@@ -10,7 +10,7 @@ namespace UserCreator.Backend.UserManagement
         {
             _localMachineEnvironement = localMachineEnvironment;
         }
-        public static void CreateNewUser(string username, string password, bool admin)
+        public static void CreateNewUser(string username, string password, bool admin, string description = null!)
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
@@ -18,9 +18,18 @@ namespace UserCreator.Backend.UserManagement
                 {
                     try
                     {
-                        newUser.Invoke("SetPassword", new object[] { password });
-                        newUser.Invoke("Put", new object[] { "Description", "New Local User" });
-                        newUser.CommitChanges();
+                        if (description == null || string.IsNullOrWhiteSpace(description))
+                        {
+                            newUser.Invoke("SetPassword", new object[] { password });
+                            newUser.Invoke("Put", new object[] { "Description", "New Local User" });
+                            newUser.CommitChanges();
+                        }
+                        else
+                        {
+                            newUser.Invoke("SetPassword", new object[] { password });
+                            newUser.Invoke("Put", new object[] { "Description", description });
+                            newUser.CommitChanges();
+                        }
                     }
                     catch (Exception ex)
                     {
