@@ -26,8 +26,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             }
             else
             {
-                WinUsersManagement userManagement = new(Statics.LocalMachineEnvironment);
-                userManagement.CreateNewUser(NewUsernameTextbox.Text.Trim(), NewPasswordTextbox.Text.Trim(), AdminCheckbox.Checked);
+                WinUsersManagement.CreateNewUser(NewUsernameTextbox.Text.Trim(), NewPasswordTextbox.Text.Trim(), AdminCheckbox.Checked);
             }
         }
     }
