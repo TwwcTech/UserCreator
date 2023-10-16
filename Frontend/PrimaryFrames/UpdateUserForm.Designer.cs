@@ -42,6 +42,7 @@
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Update User";
+            Load += UpdateUserForm_Load;
             ResumeLayout(false);
         }
 
