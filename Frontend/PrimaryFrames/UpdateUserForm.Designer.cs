@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            UpdateButton = new Button();
             SuspendLayout();
+            // 
+            // UpdateButton
+            // 
+            UpdateButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            UpdateButton.Location = new Point(301, 355);
+            UpdateButton.Name = "UpdateButton";
+            UpdateButton.Size = new Size(196, 43);
+            UpdateButton.TabIndex = 0;
+            UpdateButton.Text = "Update";
+            UpdateButton.UseVisualStyleBackColor = true;
             // 
             // UpdateUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(UpdateButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -47,5 +59,7 @@
         }
 
         #endregion
+
+        private Button UpdateButton;
     }
 }
