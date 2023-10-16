@@ -42,6 +42,7 @@
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Delete User";
+            Load += DeleteUserForm_Load;
             ResumeLayout(false);
         }
 
