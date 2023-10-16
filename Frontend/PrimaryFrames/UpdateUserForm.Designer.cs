@@ -40,6 +40,7 @@
             UpdateButton.TabIndex = 0;
             UpdateButton.Text = "Update";
             UpdateButton.UseVisualStyleBackColor = true;
+            UpdateButton.Click += UpdateButton_Click;
             // 
             // UpdateUserForm
             // 
