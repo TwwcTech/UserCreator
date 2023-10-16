@@ -42,6 +42,7 @@
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create User";
+            Load += CreateUserForm_Load;
             ResumeLayout(false);
         }
 
