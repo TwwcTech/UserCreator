@@ -39,6 +39,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "DeleteUserForm";
+            SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Delete User";
             ResumeLayout(false);
