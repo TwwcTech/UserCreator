@@ -72,6 +72,7 @@
             CreateButton.TabIndex = 3;
             CreateButton.Text = "Create";
             CreateButton.UseVisualStyleBackColor = true;
+            CreateButton.Click += CreateButton_Click;
             // 
             // CreateUserForm
             // 
