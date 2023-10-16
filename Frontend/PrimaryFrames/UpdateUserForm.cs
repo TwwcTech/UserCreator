@@ -9,7 +9,7 @@
 
         private void UpdateUserForm_Load(object sender, EventArgs e)
         {
-
+            ActiveControl = UpdateButton;
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
