@@ -48,12 +48,18 @@ namespace UserCreator.Backend.UserManagement
 
         public void UpdateUser()
         {
-
+            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            {
+                // Code goes here
+            }
         }
 
         public void DeleteUser(string username)
         {
-
+            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            {
+                // Code goes here
+            }
         }
     }
 }
