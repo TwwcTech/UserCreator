@@ -4,13 +4,13 @@ namespace UserCreator.Backend.UserManagement
 {
     internal class WinUsersManagement
     {
-        private string? _localMachineEnvironement;
+        private static string? _localMachineEnvironement;
 
-        public WinUsersManagement(string localMachineEnvironment)
+        public WinUsersManagement(string localMachineEnvironment) // if throwing errors, make class standard oop and not static
         {
             _localMachineEnvironement = localMachineEnvironment;
         }
-        public void CreateNewUser(string username, string password, bool admin)
+        public static void CreateNewUser(string username, string password, bool admin)
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
@@ -46,7 +46,7 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public void UpdateUser()
+        public static void UpdateUser()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
@@ -54,7 +54,7 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public void DeleteUser(string username)
+        public static void DeleteUser(string username)
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
