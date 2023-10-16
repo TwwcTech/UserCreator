@@ -1,5 +1,4 @@
-﻿using UserCreator.AppResources;
-using UserCreator.Backend.UserManagement;
+﻿using UserCreator.Backend.UserManagement;
 using UserCreator.Backend.Validator;
 
 namespace UserCreator.Frontend.PrimaryFrames
