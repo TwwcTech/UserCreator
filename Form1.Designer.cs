@@ -38,7 +38,7 @@
             // CreateUserButton
             // 
             CreateUserButton.Dock = DockStyle.Left;
-            CreateUserButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            CreateUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             CreateUserButton.Location = new Point(0, 0);
             CreateUserButton.Name = "CreateUserButton";
             CreateUserButton.Size = new Size(275, 450);
@@ -49,7 +49,7 @@
             // UpdateUserButton
             // 
             UpdateUserButton.Dock = DockStyle.Left;
-            UpdateUserButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            UpdateUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             UpdateUserButton.Location = new Point(275, 0);
             UpdateUserButton.Name = "UpdateUserButton";
             UpdateUserButton.Size = new Size(275, 450);
@@ -60,7 +60,7 @@
             // DeleteUserButton
             // 
             DeleteUserButton.Dock = DockStyle.Right;
-            DeleteUserButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             DeleteUserButton.Location = new Point(550, 0);
             DeleteUserButton.Name = "DeleteUserButton";
             DeleteUserButton.Size = new Size(275, 450);
