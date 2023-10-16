@@ -91,6 +91,7 @@
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             Name = "MainForm";
+            SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "User Creator Console";
             Load += MainForm_Load;
