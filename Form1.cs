@@ -21,7 +21,7 @@ namespace UserCreator
             createUserForm.ShowDialog();
             if (!createUserForm.Visible)
             {
-                ShowDialog();
+                Show();
             }
         }
 
@@ -32,7 +32,7 @@ namespace UserCreator
             updateUserForm.ShowDialog();
             if (!updateUserForm.Visible)
             {
-                ShowDialog();
+                Show();
             }
         }
 
@@ -43,7 +43,7 @@ namespace UserCreator
             deleteUserForm.ShowDialog();
             if (!deleteUserForm.Visible)
             {
-                ShowDialog();
+                Show();
             }
         }
     }
