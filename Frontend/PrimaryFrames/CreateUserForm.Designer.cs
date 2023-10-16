@@ -39,6 +39,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "CreateUserForm";
+            SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Create User";
             ResumeLayout(false);
