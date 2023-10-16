@@ -45,6 +45,7 @@
             CreateUserButton.TabIndex = 0;
             CreateUserButton.Text = "Create User";
             CreateUserButton.UseVisualStyleBackColor = true;
+            CreateUserButton.Click += CreateUserButton_Click;
             // 
             // UpdateUserButton
             // 
@@ -56,6 +57,7 @@
             UpdateUserButton.TabIndex = 1;
             UpdateUserButton.Text = "Update User";
             UpdateUserButton.UseVisualStyleBackColor = true;
+            UpdateUserButton.Click += UpdateUserButton_Click;
             // 
             // DeleteUserButton
             // 
@@ -67,6 +69,7 @@
             DeleteUserButton.TabIndex = 2;
             DeleteUserButton.Text = "Delete User";
             DeleteUserButton.UseVisualStyleBackColor = true;
+            DeleteUserButton.Click += DeleteUserButton_Click;
             // 
             // ConsoleButtonsPanel
             // 
@@ -86,6 +89,7 @@
             ClientSize = new Size(825, 450);
             Controls.Add(ConsoleButtonsPanel);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            MaximizeBox = false;
             Name = "MainForm";
             StartPosition = FormStartPosition.CenterScreen;
             Text = "User Creator Console";
