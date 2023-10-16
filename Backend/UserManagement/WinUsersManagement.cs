@@ -58,7 +58,21 @@ namespace UserCreator.Backend.UserManagement
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
-                // Code goes here
+                using (DirectoryEntry userToDelete = localMachine.Children.Find(username))
+                {
+                    if (userToDelete != null)
+                    {
+                        try
+                        {
+                            localMachine.Children.Remove(userToDelete);
+                            localMachine.CommitChanges();
+                        }
+                        catch (Exception ex)
+                        {
+                            throw new Exception(ex.ToString());
+                        }
+                    }
+                }
             }
         }
     }
