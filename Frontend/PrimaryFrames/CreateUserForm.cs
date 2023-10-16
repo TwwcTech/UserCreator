@@ -9,6 +9,11 @@
 
         private void CreateUserForm_Load(object sender, EventArgs e)
         {
+            ActiveControl = CreateButton;
+        }
+
+        private void CreateButton_Click(object sender, EventArgs e)
+        {
 
         }
     }
