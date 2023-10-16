@@ -28,13 +28,25 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DeleteButton = new Button();
             SuspendLayout();
+            // 
+            // DeleteButton
+            // 
+            DeleteButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteButton.Location = new Point(301, 355);
+            DeleteButton.Name = "DeleteButton";
+            DeleteButton.Size = new Size(196, 43);
+            DeleteButton.TabIndex = 0;
+            DeleteButton.Text = "Delete";
+            DeleteButton.UseVisualStyleBackColor = true;
             // 
             // DeleteUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 450);
+            Controls.Add(DeleteButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
             MinimizeBox = false;
@@ -47,5 +59,7 @@
         }
 
         #endregion
+
+        private Button DeleteButton;
     }
 }
