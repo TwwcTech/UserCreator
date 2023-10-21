@@ -6,7 +6,7 @@ namespace UserCreator.Backend.UserManagement
     {
         private static string? _localMachineEnvironement;
 
-        public WinUsersManagement(string localMachineEnvironment) // if throwing errors, make class standard oop and not static
+        public WinUsersManagement(string localMachineEnvironment)
         {
             _localMachineEnvironement = localMachineEnvironment;
         }
