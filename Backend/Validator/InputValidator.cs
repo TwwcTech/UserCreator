@@ -24,7 +24,7 @@ namespace UserCreator.Backend.Validator
 
         public static bool IsPasswordSecure(string password)
         {
-            Regex upperMatch = new(@"[A-Z]");
+            Regex upperMatch = new(@"[A-Z]"); // update to include lowercase match
             Regex numberMatch = new("/d");
             Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
 
