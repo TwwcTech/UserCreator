@@ -4,13 +4,36 @@ namespace UserCreator.Backend.UserManagement
 {
     internal class WinUsersManagement
     {
-        private static string? _localMachineEnvironement;
+        private string _localMachineEnvironement = $"WinNT://{Environment.MachineName},computer";
 
-        public WinUsersManagement(string localMachineEnvironment)
+        private string? _username;
+        private string? _password;
+        private bool _admin;
+        private string? description;
+
+        public string Username
         {
-            _localMachineEnvironement = localMachineEnvironment;
+            get => _username!;
+            set => _username = value;
         }
-        public static void CreateNewUser(string username, string password, bool admin, string description = null!)
+
+        public string Password
+        {
+            get => _password!;
+            set
+            {
+
+            }
+        }
+
+        
+
+        public WinUsersManagement()
+        {
+
+        }
+
+        public void CreateNewUser(string username, string password, bool admin, string description = null!)
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
