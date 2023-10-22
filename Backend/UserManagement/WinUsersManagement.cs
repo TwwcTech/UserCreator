@@ -1,4 +1,5 @@
 ﻿using System.DirectoryServices;
+using System.Text.RegularExpressions;
 
 namespace UserCreator.Backend.UserManagement
 {
@@ -14,7 +15,20 @@ namespace UserCreator.Backend.UserManagement
         public string Username
         {
             get => _username!;
-            set => _username = value;
+            set
+            {
+                Regex lowercase = new(@"[a-z]");
+
+                if (lowercase.IsMatch(value[0].ToString()))
+                {
+                    value[0].ToString().ToUpper();
+                    _username = value;
+                }
+                else
+                {
+                    _username = value;
+                }
+            }
         }
 
         public string Password
