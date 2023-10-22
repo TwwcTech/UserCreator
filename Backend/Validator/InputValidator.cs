@@ -1,6 +1,8 @@
-﻿namespace UserCreator.Backend.Validator
+﻿using System.Text.RegularExpressions;
+
+namespace UserCreator.Backend.Validator
 {
-    internal class InputValidator
+    internal static class InputValidator
     {
         public static bool AreTextboxesEmpty(TextBox[] textboxes)
         {
@@ -18,6 +20,18 @@
                 return false;
             }
             return true;
+        }
+
+        public static bool IsPasswordSecure(string password)
+        {
+            Regex numberMatch = new("/d");
+            Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
+
+            if (password.Length >= 8 && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
