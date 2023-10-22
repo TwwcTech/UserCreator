@@ -19,6 +19,7 @@ namespace UserCreator.Frontend.PrimaryFrames
         {
             TextBox[] textBoxes = { NewUsernameTextbox, NewPasswordTextbox };
             bool areTextboxesEmpty = InputValidator.AreTextboxesEmpty(textBoxes);
+
             if (areTextboxesEmpty)
             {
                 MessageBox.Show("Entries must not be empty", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
