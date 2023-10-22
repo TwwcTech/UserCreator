@@ -1,4 +1,5 @@
 ﻿using System.DirectoryServices;
+using System.Text.RegularExpressions;
 
 namespace UserCreator.Backend.UserManagement
 {
@@ -8,8 +9,8 @@ namespace UserCreator.Backend.UserManagement
 
         private string? _username;
         private string? _password;
-        private bool _admin;
-        private string? description;
+        private bool _admin = false;
+        private string? _description;
 
         public string Username
         {
@@ -22,11 +23,31 @@ namespace UserCreator.Backend.UserManagement
             get => _password!;
             set
             {
+                Regex numberMatch = new("/d");
+                Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
 
+                if (value.Length >= 8 && numberMatch.IsMatch(value) && symbolMatch.IsMatch(value))
+                {
+                    _password = value;
+                }
+                else
+                {
+                    MessageBox.Show("Password must contain a number, symbol, and must be at least 8 characters in length", "Password Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
 
-        
+        public bool Admin
+        {
+            get => _admin;
+            set => _admin = value;
+        }
+
+        public string Description
+        {
+            get => _description;
+            set => _description = value;
+        }
 
         public WinUsersManagement()
         {
@@ -78,7 +99,7 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public static void UpdateUser()
+        public void UpdateUser()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
