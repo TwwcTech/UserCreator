@@ -1,5 +1,4 @@
 ﻿using System.DirectoryServices;
-using System.Text.RegularExpressions;
 
 namespace UserCreator.Backend.UserManagement
 {
