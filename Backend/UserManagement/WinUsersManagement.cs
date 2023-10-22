@@ -21,20 +21,7 @@ namespace UserCreator.Backend.UserManagement
         public string Password
         {
             get => _password!;
-            set
-            {
-                Regex numberMatch = new("/d");
-                Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
-
-                if (value.Length >= 8 && numberMatch.IsMatch(value) && symbolMatch.IsMatch(value))
-                {
-                    _password = value;
-                }
-                else
-                {
-                    MessageBox.Show("Password must contain a number, symbol, and must be at least 8 characters in length", "Password Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
-            }
+            set => _password = value;
         }
 
         public bool Admin
@@ -49,10 +36,7 @@ namespace UserCreator.Backend.UserManagement
             set => _description = value;
         }
 
-        public WinUsersManagement()
-        {
-
-        }
+        public WinUsersManagement() { }
 
         public void CreateNewUser(string username, string password, bool admin, string description = null!)
         {
