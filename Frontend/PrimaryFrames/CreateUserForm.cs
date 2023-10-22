@@ -25,7 +25,21 @@ namespace UserCreator.Frontend.PrimaryFrames
             }
             else
             {
-                WinUsersManagement.CreateNewUser(NewUsernameTextbox.Text.Trim(), NewPasswordTextbox.Text.Trim(), AdminCheckbox.Checked);
+                if (InputValidator.IsPasswordSecure(NewPasswordTextbox.Text.Trim()))
+                {
+                    WinUsersManagement newLocalUser = new();
+
+                    newLocalUser.Username = NewUsernameTextbox.Text.Trim();
+                    newLocalUser.Password = NewPasswordTextbox.Text.Trim();
+                    newLocalUser.Admin = AdminCheckbox.Checked;
+                    newLocalUser.Description = "";
+
+                    newLocalUser.CreateNewUser(newLocalUser.Username, newLocalUser.Password, newLocalUser.Admin, newLocalUser.Description);
+                }
+                else
+                {
+                    MessageBox.Show("Password must contain a number, a symbol, and must be at least 8 characters in length", "Password Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
             }
         }
     }
