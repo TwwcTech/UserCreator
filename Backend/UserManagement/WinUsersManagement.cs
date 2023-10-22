@@ -45,7 +45,7 @@ namespace UserCreator.Backend.UserManagement
 
         public string Description
         {
-            get => _description;
+            get => _description!;
             set => _description = value;
         }
 
@@ -107,7 +107,7 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public static void DeleteUser(string username)
+        public void DeleteUser(string username)
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
