@@ -82,7 +82,6 @@ namespace UserCreator.Backend.UserManagement
                     try
                     {
                         newUser.Invoke("SetPassword", new object[] { Password });
-
                         if (!string.IsNullOrWhiteSpace(Description))
                         {
                             newUser.Invoke("Put", new object[] { "Description", Description });
@@ -93,12 +92,11 @@ namespace UserCreator.Backend.UserManagement
                             newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
                         }
 
-                        if (AccountExpirationDate != default)
+                        if (AccountExpirationDate != default || AccountExpirationDate != DateTime.Today)
                         {
                             const long maxDate = 0x7FFFFFFFFFFFFFFF;
                             newUser.Properties["AccountExpires"].Value = AccountExpirationDate.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationDate.ToFileTime();
                         }
-
                         newUser.CommitChanges();
                     }
                     catch (Exception ex)
@@ -153,6 +151,16 @@ namespace UserCreator.Backend.UserManagement
                     }
                 }
             }
+        }
+
+        public void UpdateMaxBadPasswords()
+        {
+            // Code goes here
+        }
+
+        public void UpdateAccountExpirationDate()
+        {
+            // Code goes here
         }
 
         public void DeleteUser()
