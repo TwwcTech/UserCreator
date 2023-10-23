@@ -21,8 +21,8 @@ namespace UserCreator.Backend.UserManagement
                 if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
                     value[0].ToString().ToUpper();
-                    _username = value;
                 }
+
                 _username = value;
             }
         }
