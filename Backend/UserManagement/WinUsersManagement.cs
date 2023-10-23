@@ -10,7 +10,7 @@ namespace UserCreator.Backend.UserManagement
 
         private string? _username;
         private string? _password;
-        private bool _enableAdmin = false;
+        private bool _enableAdmin;
         private string? _description;
 
         public string Username
@@ -23,10 +23,7 @@ namespace UserCreator.Backend.UserManagement
                     value[0].ToString().ToUpper();
                     _username = value;
                 }
-                else
-                {
-                    _username = value;
-                }
+                _username = value;
             }
         }
 
