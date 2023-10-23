@@ -51,24 +51,24 @@ namespace UserCreator.Backend.UserManagement
 
         public WinUsersManagement() { }
 
-        public void CreateNewUser(string username, string password, bool admin, string description = null!)
+        public void CreateNewUser()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
-                using (DirectoryEntry newUser = localMachine.Children.Add(username, "user"))
+                using (DirectoryEntry newUser = localMachine.Children.Add(Username, "user"))
                 {
                     try
                     {
-                        if (description == null || string.IsNullOrWhiteSpace(description))
+                        if (Description == null || string.IsNullOrWhiteSpace(Description))
                         {
-                            newUser.Invoke("SetPassword", new object[] { password });
+                            newUser.Invoke("SetPassword", new object[] { Password });
                             newUser.Invoke("Put", new object[] { "Description", "New Local User" });
                             newUser.CommitChanges();
                         }
                         else
                         {
-                            newUser.Invoke("SetPassword", new object[] { password });
-                            newUser.Invoke("Put", new object[] { "Description", description });
+                            newUser.Invoke("SetPassword", new object[] { Password });
+                            newUser.Invoke("Put", new object[] { "Description", Description });
                             newUser.CommitChanges();
                         }
                     }
@@ -78,13 +78,13 @@ namespace UserCreator.Backend.UserManagement
                     }
                 }
 
-                if (admin)
+                if (Admin)
                 {
                     using (DirectoryEntry adminGroup = localMachine.Children.Find("Administrators", "group"))
                     {
                         try
                         {
-                            adminGroup.Invoke("Add", new object[] { $"{localMachine.Path}/{username}" });
+                            adminGroup.Invoke("Add", new object[] { $"{localMachine.Path}/{Username}" });
                             adminGroup.CommitChanges();
                         }
                         catch (Exception ex)
@@ -104,11 +104,11 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public void DeleteUser(string username)
+        public void DeleteUser()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
-                using (DirectoryEntry userToDelete = localMachine.Children.Find(username))
+                using (DirectoryEntry userToDelete = localMachine.Children.Find(Username))
                 {
                     if (userToDelete != null)
                     {
