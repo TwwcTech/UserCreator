@@ -12,6 +12,8 @@ namespace UserCreator.Backend.UserManagement
         private string? _password;
         private bool _enableAdmin;
         private string? _description;
+        private int _maxBadPassword;
+        private DateTime _accountExpirationDate;
 
         public string Username
         {
@@ -57,6 +59,18 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
+        public int MaxBadPassword
+        {
+            get => _maxBadPassword;
+            set => _maxBadPassword = value;
+        }
+
+        public DateTime AccountExpirationDate
+        {
+            get => _accountExpirationDate;
+            set => _accountExpirationDate = value;
+        }
+
         public WinUsersManagement() { }
 
         public void CreateNewUser()
@@ -69,13 +83,20 @@ namespace UserCreator.Backend.UserManagement
                     {
                         newUser.Invoke("SetPassword", new object[] { Password });
 
-                        if (Description == null || string.IsNullOrWhiteSpace(Description))
-                        {
-                            newUser.Invoke("Put", new object[] { "Description", "New Local User" });
-                        }
-                        else
+                        if (!string.IsNullOrWhiteSpace(Description))
                         {
                             newUser.Invoke("Put", new object[] { "Description", Description });
+                        }
+
+                        if (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default)
+                        {
+                            newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
+                        }
+
+                        if (AccountExpirationDate != default)
+                        {
+                            const long maxDate = 0x7FFFFFFFFFFFFFFF;
+                            newUser.Properties["AccountExpires"].Value = AccountExpirationDate.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationDate.ToFileTime();
                         }
 
                         newUser.CommitChanges();
