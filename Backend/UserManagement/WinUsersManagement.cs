@@ -67,18 +67,18 @@ namespace UserCreator.Backend.UserManagement
                 {
                     try
                     {
+                        newUser.Invoke("SetPassword", new object[] { Password });
+
                         if (Description == null || string.IsNullOrWhiteSpace(Description))
                         {
-                            newUser.Invoke("SetPassword", new object[] { Password });
                             newUser.Invoke("Put", new object[] { "Description", "New Local User" });
-                            newUser.CommitChanges();
                         }
                         else
                         {
-                            newUser.Invoke("SetPassword", new object[] { Password });
                             newUser.Invoke("Put", new object[] { "Description", Description });
-                            newUser.CommitChanges();
                         }
+
+                        newUser.CommitChanges();
                     }
                     catch (Exception ex)
                     {
