@@ -104,16 +104,31 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
+        public void UpdatePassword()
+        {
+            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            {
+                using (DirectoryEntry userPasswordUpdate = localMachine.Children.Find(Username))
+                {
+                    if (userPasswordUpdate != null)
+                    {
+                        userPasswordUpdate.Invoke("SetPassword", new object[] { Password });
+                        userPasswordUpdate.CommitChanges();
+                    }
+                }
+            }
+        }
+
         public void UpdateDescription()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
-                using (DirectoryEntry userToUpdate = localMachine.Children.Find(Username))
+                using (DirectoryEntry userDescriptionUpdate = localMachine.Children.Find(Username))
                 {
-                    if (userToUpdate != null)
+                    if (userDescriptionUpdate != null)
                     {
-                        userToUpdate.Properties["Description"].Value = Description;
-                        userToUpdate.CommitChanges();
+                        userDescriptionUpdate.Properties["Description"].Value = Description;
+                        userDescriptionUpdate.CommitChanges();
                     }
                 }
             }
