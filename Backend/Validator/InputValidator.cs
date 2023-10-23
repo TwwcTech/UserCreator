@@ -24,11 +24,11 @@ namespace UserCreator.Backend.Validator
 
         public static bool IsPasswordSecure(string password)
         {
-            Regex upperMatch = new(@"[A-Z]"); // update to include lowercase match
+            Regex letterMatch = new(@"(?=.*[a-z])(?=.*[A-Z])");
             Regex numberMatch = new("/d");
             Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
 
-            if (password.Length >= 8 && upperMatch.IsMatch(password) && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password))
+            if (password.Length >= 8 && letterMatch.IsMatch(password) && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password))
             {
                 return true;
             }
