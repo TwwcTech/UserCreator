@@ -20,7 +20,7 @@ namespace UserCreator.Backend.UserManagement
             {
                 if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
-                    value[0].ToString().ToUpper();
+                    value += value[0].ToString().ToUpper();
                 }
 
                 _username = value;
@@ -46,7 +46,7 @@ namespace UserCreator.Backend.UserManagement
             {
                 if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
-                    value[0].ToString().ToUpper();
+                    value += value[0].ToString().ToUpper();
                 }
 
                 if (!value.EndsWith("."))
