@@ -10,7 +10,7 @@ namespace UserCreator.Backend.UserManagement
 
         private string? _username;
         private string? _password;
-        private bool _enableAdmin;
+        private bool _enableAdmin = false;
         private string? _description;
         private int _maxBadPassword;
         private DateTime _accountExpirationDate;
