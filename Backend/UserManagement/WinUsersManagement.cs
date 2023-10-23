@@ -20,9 +20,9 @@ namespace UserCreator.Backend.UserManagement
             {
                 if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
-                    value += value[0].ToString().ToUpper();
+                    string updatedBegginningCharacter = value[0].ToString().ToUpper();
+                    value = value.Replace(value[0], Convert.ToChar(updatedBegginningCharacter));
                 }
-
                 _username = value;
             }
         }
@@ -46,14 +46,13 @@ namespace UserCreator.Backend.UserManagement
             {
                 if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
-                    value += value[0].ToString().ToUpper();
+                    string updatedBegginningLetter = value[0].ToString().ToUpper();
+                    value = value.Replace(value[0], char.Parse(updatedBegginningLetter));
+                    if (!value.EndsWith("."))
+                    {
+                        value += ".";
+                    }
                 }
-
-                if (!value.EndsWith("."))
-                {
-                    value += ".";
-                }
-
                 _description = value;
             }
         }
@@ -105,7 +104,7 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public void UpdateUser()
+        public void UpdateDescription()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
