@@ -33,9 +33,9 @@ namespace UserCreator.Frontend.PrimaryFrames
                     newLocalUser.Username = NewUsernameTextbox.Text.Trim();
                     newLocalUser.Password = NewPasswordTextbox.Text.Trim();
                     newLocalUser.Admin = AdminCheckbox.Checked;
-                    newLocalUser.Description = "";
+                    newLocalUser.Description = ""; // Add a Description Textbox
 
-                    newLocalUser.CreateNewUser(newLocalUser.Username, newLocalUser.Password, newLocalUser.Admin, newLocalUser.Description);
+                    newLocalUser.CreateNewUser();
                 }
                 else
                 {
