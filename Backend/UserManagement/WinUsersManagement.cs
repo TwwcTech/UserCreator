@@ -12,14 +12,15 @@ namespace UserCreator.Backend.UserManagement
         private bool _admin = false;
         private string? _description;
 
+        private Regex _lowercaseMatch = new(@"[a-z]");
+
+
         public string Username
         {
             get => _username!;
             set
             {
-                Regex lowercase = new(@"[a-z]");
-
-                if (lowercase.IsMatch(value[0].ToString()))
+                if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
                     value[0].ToString().ToUpper();
                     _username = value;
@@ -46,7 +47,20 @@ namespace UserCreator.Backend.UserManagement
         public string Description
         {
             get => _description!;
-            set => _description = value;
+            set
+            {
+                if (_lowercaseMatch.IsMatch(value[0].ToString()))
+                {
+                    value[0].ToString().ToUpper();
+                }
+
+                if (!value.EndsWith("."))
+                {
+                    value += ".";
+                }
+
+                _description = value;
+            }
         }
 
         public WinUsersManagement() { }
