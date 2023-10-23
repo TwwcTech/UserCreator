@@ -32,6 +32,7 @@
             NewPasswordTextbox = new TextBox();
             AdminCheckbox = new CheckBox();
             CreateButton = new Button();
+            DescriptionTextbox = new TextBox();
             SuspendLayout();
             // 
             // NewUsernameTextbox
@@ -56,9 +57,9 @@
             // 
             AdminCheckbox.AutoSize = true;
             AdminCheckbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            AdminCheckbox.Location = new Point(322, 209);
+            AdminCheckbox.Location = new Point(301, 209);
             AdminCheckbox.Name = "AdminCheckbox";
-            AdminCheckbox.Size = new Size(139, 25);
+            AdminCheckbox.Size = new Size(193, 25);
             AdminCheckbox.TabIndex = 2;
             AdminCheckbox.Text = "Enable EnableAdmin";
             AdminCheckbox.UseVisualStyleBackColor = true;
@@ -66,7 +67,7 @@
             // CreateButton
             // 
             CreateButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            CreateButton.Location = new Point(301, 355);
+            CreateButton.Location = new Point(301, 558);
             CreateButton.Name = "CreateButton";
             CreateButton.Size = new Size(196, 43);
             CreateButton.TabIndex = 3;
@@ -74,11 +75,22 @@
             CreateButton.UseVisualStyleBackColor = true;
             CreateButton.Click += CreateButton_Click;
             // 
+            // DescriptionTextbox
+            // 
+            DescriptionTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            DescriptionTextbox.Location = new Point(207, 285);
+            DescriptionTextbox.Multiline = true;
+            DescriptionTextbox.Name = "DescriptionTextbox";
+            DescriptionTextbox.PlaceholderText = "Description (Optional)";
+            DescriptionTextbox.Size = new Size(376, 219);
+            DescriptionTextbox.TabIndex = 4;
+            // 
             // CreateUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(800, 659);
+            Controls.Add(DescriptionTextbox);
             Controls.Add(CreateButton);
             Controls.Add(AdminCheckbox);
             Controls.Add(NewPasswordTextbox);
@@ -101,5 +113,6 @@
         private TextBox NewPasswordTextbox;
         private CheckBox AdminCheckbox;
         private Button CreateButton;
+        private TextBox DescriptionTextbox;
     }
 }
