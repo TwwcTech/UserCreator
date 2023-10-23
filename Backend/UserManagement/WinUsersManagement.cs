@@ -108,7 +108,14 @@ namespace UserCreator.Backend.UserManagement
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
-                // Code goes here
+                using (DirectoryEntry userToUpdate = localMachine.Children.Find(Username))
+                {
+                    if (userToUpdate != null)
+                    {
+                        userToUpdate.Properties["Description"].Value = Description;
+                        userToUpdate.CommitChanges();
+                    }
+                }
             }
         }
 
