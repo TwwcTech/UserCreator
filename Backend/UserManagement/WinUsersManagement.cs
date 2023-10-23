@@ -49,7 +49,7 @@ namespace UserCreator.Backend.UserManagement
                 if (_lowercaseMatch.IsMatch(value[0].ToString()))
                 {
                     string updatedBegginningLetter = value[0].ToString().ToUpper();
-                    value = value.Replace(value[0], char.Parse(updatedBegginningLetter));
+                    value = value.Replace(value[0], Convert.ToChar(updatedBegginningLetter));
                     if (!value.EndsWith("."))
                     {
                         value += ".";
