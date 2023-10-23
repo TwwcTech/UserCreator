@@ -9,7 +9,7 @@ namespace UserCreator.Backend.UserManagement
 
         private string? _username;
         private string? _password;
-        private bool _admin = false;
+        private bool _enableAdmin = false;
         private string? _description;
 
         private Regex _lowercaseMatch = new(@"[a-z]");
@@ -38,10 +38,10 @@ namespace UserCreator.Backend.UserManagement
             set => _password = value;
         }
 
-        public bool Admin
+        public bool EnableAdmin
         {
-            get => _admin;
-            set => _admin = value;
+            get => _enableAdmin;
+            set => _enableAdmin = value;
         }
 
         public string Description
@@ -92,7 +92,7 @@ namespace UserCreator.Backend.UserManagement
                     }
                 }
 
-                if (Admin)
+                if (EnableAdmin)
                 {
                     using (DirectoryEntry adminGroup = localMachine.Children.Find("Administrators", "group"))
                     {

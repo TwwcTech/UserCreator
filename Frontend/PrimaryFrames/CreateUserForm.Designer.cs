@@ -60,7 +60,7 @@
             AdminCheckbox.Name = "AdminCheckbox";
             AdminCheckbox.Size = new Size(139, 25);
             AdminCheckbox.TabIndex = 2;
-            AdminCheckbox.Text = "Enable Admin";
+            AdminCheckbox.Text = "Enable EnableAdmin";
             AdminCheckbox.UseVisualStyleBackColor = true;
             // 
             // CreateButton
