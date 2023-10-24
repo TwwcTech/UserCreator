@@ -37,8 +37,8 @@
             DayMonthPicker = new NumericUpDown();
             DayMonthComboBox = new ComboBox();
             MaxBadPassCheckbox = new NumericUpDown();
-            AccountExpirationTextbox = new CheckBox();
-            MaxBadPasswordTextbox = new CheckBox();
+            AccountExpirationCheckbox = new CheckBox();
+            MadBadPassCheckbox = new CheckBox();
             OptionsControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DayMonthPicker).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MaxBadPassCheckbox).BeginInit();
@@ -100,8 +100,8 @@
             OptionsControlPanel.Controls.Add(DayMonthPicker);
             OptionsControlPanel.Controls.Add(DayMonthComboBox);
             OptionsControlPanel.Controls.Add(MaxBadPassCheckbox);
-            OptionsControlPanel.Controls.Add(AccountExpirationTextbox);
-            OptionsControlPanel.Controls.Add(MaxBadPasswordTextbox);
+            OptionsControlPanel.Controls.Add(AccountExpirationCheckbox);
+            OptionsControlPanel.Controls.Add(MadBadPassCheckbox);
             OptionsControlPanel.Controls.Add(DescriptionTextbox);
             OptionsControlPanel.Font = new Font("Century Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             OptionsControlPanel.Location = new Point(12, 215);
@@ -136,27 +136,29 @@
             MaxBadPassCheckbox.Size = new Size(120, 27);
             MaxBadPassCheckbox.TabIndex = 7;
             // 
-            // AccountExpirationTextbox
+            // AccountExpirationCheckbox
             // 
-            AccountExpirationTextbox.AutoSize = true;
-            AccountExpirationTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            AccountExpirationTextbox.Location = new Point(6, 272);
-            AccountExpirationTextbox.Name = "AccountExpirationTextbox";
-            AccountExpirationTextbox.Size = new Size(180, 25);
-            AccountExpirationTextbox.TabIndex = 6;
-            AccountExpirationTextbox.Text = "Account Expiration";
-            AccountExpirationTextbox.UseVisualStyleBackColor = true;
+            AccountExpirationCheckbox.AutoSize = true;
+            AccountExpirationCheckbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            AccountExpirationCheckbox.Location = new Point(6, 272);
+            AccountExpirationCheckbox.Name = "AccountExpirationCheckbox";
+            AccountExpirationCheckbox.Size = new Size(180, 25);
+            AccountExpirationCheckbox.TabIndex = 6;
+            AccountExpirationCheckbox.Text = "Account Expiration";
+            AccountExpirationCheckbox.UseVisualStyleBackColor = true;
+            AccountExpirationCheckbox.CheckedChanged += AccountExpirationCheckbox_CheckedChanged;
             // 
-            // MaxBadPasswordTextbox
+            // MadBadPassCheckbox
             // 
-            MaxBadPasswordTextbox.AutoSize = true;
-            MaxBadPasswordTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            MaxBadPasswordTextbox.Location = new Point(6, 214);
-            MaxBadPasswordTextbox.Name = "MaxBadPasswordTextbox";
-            MaxBadPasswordTextbox.Size = new Size(254, 25);
-            MaxBadPasswordTextbox.TabIndex = 5;
-            MaxBadPasswordTextbox.Text = "Max Bad Password Attempts";
-            MaxBadPasswordTextbox.UseVisualStyleBackColor = true;
+            MadBadPassCheckbox.AutoSize = true;
+            MadBadPassCheckbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            MadBadPassCheckbox.Location = new Point(6, 214);
+            MadBadPassCheckbox.Name = "MadBadPassCheckbox";
+            MadBadPassCheckbox.Size = new Size(254, 25);
+            MadBadPassCheckbox.TabIndex = 5;
+            MadBadPassCheckbox.Text = "Max Bad Password Attempts";
+            MadBadPassCheckbox.UseVisualStyleBackColor = true;
+            MadBadPassCheckbox.CheckedChanged += MadBadPassCheckbox_CheckedChanged;
             // 
             // CreateUserForm
             // 
@@ -192,8 +194,8 @@
         private Button CreateButton;
         private TextBox DescriptionTextbox;
         private GroupBox OptionsControlPanel;
-        private CheckBox MaxBadPasswordTextbox;
-        private CheckBox AccountExpirationTextbox;
+        private CheckBox MadBadPassCheckbox;
+        private CheckBox AccountExpirationCheckbox;
         private NumericUpDown DayMonthPicker;
         private ComboBox DayMonthComboBox;
         private NumericUpDown MaxBadPassCheckbox;
