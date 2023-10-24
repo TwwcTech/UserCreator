@@ -82,6 +82,7 @@ namespace UserCreator.Backend.UserManagement
                     try
                     {
                         newUser.Invoke("SetPassword", new object[] { Password });
+
                         if (!string.IsNullOrWhiteSpace(Description))
                         {
                             newUser.Invoke("Put", new object[] { "Description", Description });
@@ -97,6 +98,7 @@ namespace UserCreator.Backend.UserManagement
                             const long maxDate = 0x7FFFFFFFFFFFFFFF;
                             newUser.Properties["AccountExpires"].Value = AccountExpirationDate.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationDate.ToFileTime();
                         }
+
                         newUser.CommitChanges();
                     }
                     catch (Exception ex)
