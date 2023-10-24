@@ -13,6 +13,10 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void CreateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = CreateButton;
+
+            MaxBadPassPicker.Enabled = false;
+            DayMonthComboBox.Enabled = false;
+            DayMonthPicker.Enabled = false;
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
@@ -43,14 +47,30 @@ namespace UserCreator.Frontend.PrimaryFrames
             }
         }
 
-        private void MadBadPassCheckbox_CheckedChanged(object sender, EventArgs e)
+        private void MaxBadPassCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (MaxBadPassCheckbox.Checked)
+            {
+                MaxBadPassPicker.Enabled = true;
+            }
+            else
+            {
+                MaxBadPassPicker.Enabled = false;
+            }
         }
 
         private void AccountExpirationCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-
+            if (AccountExpirationCheckbox.Checked)
+            {
+                DayMonthComboBox.Enabled = true;
+                DayMonthPicker.Enabled = true;
+            }
+            else
+            {
+                DayMonthComboBox.Enabled = false;
+                DayMonthPicker.Enabled = false;
+            }
         }
     }
 }
