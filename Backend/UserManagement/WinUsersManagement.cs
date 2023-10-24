@@ -157,12 +157,31 @@ namespace UserCreator.Backend.UserManagement
 
         public void UpdateMaxBadPasswords()
         {
-            // Code goes here
+            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            {
+                using (DirectoryEntry maxBadPassUpdate = localMachine.Children.Find(Username))
+                {
+                    if (maxBadPassUpdate != null)
+                    {
+                        maxBadPassUpdate.Properties["LockoutThreshold"].Value = MaxBadPassword;
+                    }
+                }
+            }
         }
 
         public void UpdateAccountExpirationDate()
         {
-            // Code goes here
+            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            {
+                using (DirectoryEntry accountExpirationUpdate = localMachine.Children.Find(Username))
+                {
+                    if (accountExpirationUpdate != null)
+                    {
+                        const long maxDate = 0x7FFFFFFFFFFFFFFF;
+                        accountExpirationUpdate.Properties["AccountExpires"].Value = AccountExpirationDate.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationDate.ToFileTime();
+                    }
+                }
+            }
         }
 
         public void DeleteUser()
