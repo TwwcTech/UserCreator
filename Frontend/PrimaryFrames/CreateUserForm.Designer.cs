@@ -36,12 +36,12 @@
             OptionsControlPanel = new GroupBox();
             DayMonthPicker = new NumericUpDown();
             DayMonthComboBox = new ComboBox();
-            MaxBadPassCheckbox = new NumericUpDown();
+            MaxBadPassPicker = new NumericUpDown();
             AccountExpirationCheckbox = new CheckBox();
-            MadBadPassCheckbox = new CheckBox();
+            MaxBadPassCheckbox = new CheckBox();
             OptionsControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)DayMonthPicker).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)MaxBadPassCheckbox).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)MaxBadPassPicker).BeginInit();
             SuspendLayout();
             // 
             // NewUsernameTextbox
@@ -99,9 +99,9 @@
             // 
             OptionsControlPanel.Controls.Add(DayMonthPicker);
             OptionsControlPanel.Controls.Add(DayMonthComboBox);
-            OptionsControlPanel.Controls.Add(MaxBadPassCheckbox);
+            OptionsControlPanel.Controls.Add(MaxBadPassPicker);
             OptionsControlPanel.Controls.Add(AccountExpirationCheckbox);
-            OptionsControlPanel.Controls.Add(MadBadPassCheckbox);
+            OptionsControlPanel.Controls.Add(MaxBadPassCheckbox);
             OptionsControlPanel.Controls.Add(DescriptionTextbox);
             OptionsControlPanel.Font = new Font("Century Gothic", 12F, FontStyle.Bold | FontStyle.Italic, GraphicsUnit.Point);
             OptionsControlPanel.Location = new Point(12, 215);
@@ -128,13 +128,13 @@
             DayMonthComboBox.Size = new Size(196, 29);
             DayMonthComboBox.TabIndex = 8;
             // 
-            // MaxBadPassCheckbox
+            // MaxBadPassPicker
             // 
-            MaxBadPassCheckbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            MaxBadPassCheckbox.Location = new Point(451, 212);
-            MaxBadPassCheckbox.Name = "MaxBadPassCheckbox";
-            MaxBadPassCheckbox.Size = new Size(120, 27);
-            MaxBadPassCheckbox.TabIndex = 7;
+            MaxBadPassPicker.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            MaxBadPassPicker.Location = new Point(451, 212);
+            MaxBadPassPicker.Name = "MaxBadPassPicker";
+            MaxBadPassPicker.Size = new Size(120, 27);
+            MaxBadPassPicker.TabIndex = 7;
             // 
             // AccountExpirationCheckbox
             // 
@@ -148,17 +148,17 @@
             AccountExpirationCheckbox.UseVisualStyleBackColor = true;
             AccountExpirationCheckbox.CheckedChanged += AccountExpirationCheckbox_CheckedChanged;
             // 
-            // MadBadPassCheckbox
+            // MaxBadPassCheckbox
             // 
-            MadBadPassCheckbox.AutoSize = true;
-            MadBadPassCheckbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            MadBadPassCheckbox.Location = new Point(6, 214);
-            MadBadPassCheckbox.Name = "MadBadPassCheckbox";
-            MadBadPassCheckbox.Size = new Size(254, 25);
-            MadBadPassCheckbox.TabIndex = 5;
-            MadBadPassCheckbox.Text = "Max Bad Password Attempts";
-            MadBadPassCheckbox.UseVisualStyleBackColor = true;
-            MadBadPassCheckbox.CheckedChanged += MadBadPassCheckbox_CheckedChanged;
+            MaxBadPassCheckbox.AutoSize = true;
+            MaxBadPassCheckbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            MaxBadPassCheckbox.Location = new Point(6, 214);
+            MaxBadPassCheckbox.Name = "MaxBadPassCheckbox";
+            MaxBadPassCheckbox.Size = new Size(254, 25);
+            MaxBadPassCheckbox.TabIndex = 5;
+            MaxBadPassCheckbox.Text = "Max Bad Password Attempts";
+            MaxBadPassCheckbox.UseVisualStyleBackColor = true;
+            MaxBadPassCheckbox.CheckedChanged += MaxBadPassCheckbox_CheckedChanged;
             // 
             // CreateUserForm
             // 
@@ -181,7 +181,7 @@
             OptionsControlPanel.ResumeLayout(false);
             OptionsControlPanel.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)DayMonthPicker).EndInit();
-            ((System.ComponentModel.ISupportInitialize)MaxBadPassCheckbox).EndInit();
+            ((System.ComponentModel.ISupportInitialize)MaxBadPassPicker).EndInit();
             ResumeLayout(false);
             PerformLayout();
         }
@@ -194,10 +194,10 @@
         private Button CreateButton;
         private TextBox DescriptionTextbox;
         private GroupBox OptionsControlPanel;
-        private CheckBox MadBadPassCheckbox;
+        private CheckBox MaxBadPassCheckbox;
         private CheckBox AccountExpirationCheckbox;
         private NumericUpDown DayMonthPicker;
         private ComboBox DayMonthComboBox;
-        private NumericUpDown MaxBadPassCheckbox;
+        private NumericUpDown MaxBadPassPicker;
     }
 }
