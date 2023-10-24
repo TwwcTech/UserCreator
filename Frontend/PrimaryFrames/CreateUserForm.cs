@@ -34,7 +34,6 @@ namespace UserCreator.Frontend.PrimaryFrames
                     newLocalUser.Password = NewPasswordTextbox.Text.Trim();
                     newLocalUser.EnableAdmin = AdminCheckbox.Checked;
                     newLocalUser.Description = DescriptionTextbox.Text.Trim();
-
                     newLocalUser.CreateNewUser();
                 }
                 else
@@ -42,6 +41,16 @@ namespace UserCreator.Frontend.PrimaryFrames
                     MessageBox.Show("Password must contain a number, a symbol, and must be at least 8 characters in length", "Password Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+        }
+
+        private void MadBadPassCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void AccountExpirationCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }
