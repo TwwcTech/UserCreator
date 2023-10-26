@@ -54,7 +54,7 @@
             Name = "UpdateUserForm";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Update User";
+            Text = "Update Local User";
             Load += UpdateUserForm_Load;
             ResumeLayout(false);
         }

@@ -93,7 +93,7 @@
             Name = "MainForm";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "User Creator Console";
+            Text = "Local User Console";
             Load += MainForm_Load;
             ConsoleButtonsPanel.ResumeLayout(false);
             ResumeLayout(false);

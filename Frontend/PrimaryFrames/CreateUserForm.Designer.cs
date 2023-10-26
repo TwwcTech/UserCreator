@@ -34,10 +34,10 @@
             CreateButton = new Button();
             DescriptionTextbox = new TextBox();
             OptionsControlPanel = new GroupBox();
+            DayMonthPicker = new DateTimePicker();
             MaxBadPassPicker = new NumericUpDown();
             AccountExpirationCheckbox = new CheckBox();
             MaxBadPassCheckbox = new CheckBox();
-            DayMonthPicker = new DateTimePicker();
             OptionsControlPanel.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)MaxBadPassPicker).BeginInit();
             SuspendLayout();
@@ -89,7 +89,7 @@
             DescriptionTextbox.Location = new Point(6, 26);
             DescriptionTextbox.Multiline = true;
             DescriptionTextbox.Name = "DescriptionTextbox";
-            DescriptionTextbox.PlaceholderText = "Description (Optional)";
+            DescriptionTextbox.PlaceholderText = "Description";
             DescriptionTextbox.Size = new Size(593, 162);
             DescriptionTextbox.TabIndex = 4;
             // 
@@ -107,6 +107,14 @@
             OptionsControlPanel.TabIndex = 5;
             OptionsControlPanel.TabStop = false;
             OptionsControlPanel.Text = "OPTIONAL";
+            // 
+            // DayMonthPicker
+            // 
+            DayMonthPicker.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            DayMonthPicker.Location = new Point(267, 268);
+            DayMonthPicker.Name = "DayMonthPicker";
+            DayMonthPicker.Size = new Size(304, 27);
+            DayMonthPicker.TabIndex = 8;
             // 
             // MaxBadPassPicker
             // 
@@ -140,14 +148,6 @@
             MaxBadPassCheckbox.UseVisualStyleBackColor = true;
             MaxBadPassCheckbox.CheckedChanged += MaxBadPassCheckbox_CheckedChanged;
             // 
-            // DayMonthPicker
-            // 
-            DayMonthPicker.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            DayMonthPicker.Location = new Point(267, 268);
-            DayMonthPicker.Name = "DayMonthPicker";
-            DayMonthPicker.Size = new Size(304, 27);
-            DayMonthPicker.TabIndex = 8;
-            // 
             // CreateUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -164,7 +164,7 @@
             Name = "CreateUserForm";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Create User";
+            Text = "Create Local User";
             Load += CreateUserForm_Load;
             OptionsControlPanel.ResumeLayout(false);
             OptionsControlPanel.PerformLayout();

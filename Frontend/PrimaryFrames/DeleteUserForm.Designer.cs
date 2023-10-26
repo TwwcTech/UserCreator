@@ -54,7 +54,7 @@
             Name = "DeleteUserForm";
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
-            Text = "Delete User";
+            Text = "Delete Local User";
             Load += DeleteUserForm_Load;
             ResumeLayout(false);
         }
