@@ -38,6 +38,9 @@ namespace UserCreator.Frontend.PrimaryFrames
                     newLocalUser.Password = NewPasswordTextbox.Text.Trim();
                     newLocalUser.EnableAdmin = AdminCheckbox.Checked;
                     newLocalUser.Description = DescriptionTextbox.Text.Trim();
+                    // max bad password attempts
+                    // account expiration date 
+                    // add the logic for both 
                     newLocalUser.CreateNewUser();
                 }
                 else
