@@ -65,7 +65,7 @@ namespace UserCreator.Backend.UserManagement
             set => _maxBadPassword = value;
         }
 
-        public DateTime AccountExpirationDate
+        public DateTime AccountExpirationLength
         {
             get => _accountExpirationDate;
             set => _accountExpirationDate = value;
@@ -73,7 +73,7 @@ namespace UserCreator.Backend.UserManagement
 
         public WinUsersManagement() { }
 
-        public void CreateNewUser()
+        public void CreateNewUser(string dayOrMonth = null!)
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
@@ -93,10 +93,10 @@ namespace UserCreator.Backend.UserManagement
                             newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
                         }
 
-                        if (AccountExpirationDate != default || AccountExpirationDate != DateTime.Today)
+                        if (AccountExpirationLength != default || AccountExpirationLength != DateTime.Today)
                         {
                             const long maxDate = 0x7FFFFFFFFFFFFFFF;
-                            newUser.Properties["AccountExpires"].Value = AccountExpirationDate.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationDate.ToFileTime();
+                            newUser.Properties["AccountExpires"].Value = AccountExpirationLength.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationLength.ToFileTime();
                         }
 
                         newUser.CommitChanges();
@@ -178,7 +178,7 @@ namespace UserCreator.Backend.UserManagement
                     if (accountExpirationUpdate != null)
                     {
                         const long maxDate = 0x7FFFFFFFFFFFFFFF;
-                        accountExpirationUpdate.Properties["AccountExpires"].Value = AccountExpirationDate.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationDate.ToFileTime();
+                        accountExpirationUpdate.Properties["AccountExpires"].Value = AccountExpirationLength.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationLength.ToFileTime();
                     }
                 }
             }
