@@ -34,13 +34,11 @@
             CreateButton = new Button();
             DescriptionTextbox = new TextBox();
             OptionsControlPanel = new GroupBox();
-            DayMonthPicker = new NumericUpDown();
-            DayMonthComboBox = new ComboBox();
             MaxBadPassPicker = new NumericUpDown();
             AccountExpirationCheckbox = new CheckBox();
             MaxBadPassCheckbox = new CheckBox();
+            DayMonthPicker = new DateTimePicker();
             OptionsControlPanel.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)DayMonthPicker).BeginInit();
             ((System.ComponentModel.ISupportInitialize)MaxBadPassPicker).BeginInit();
             SuspendLayout();
             // 
@@ -98,7 +96,6 @@
             // OptionsControlPanel
             // 
             OptionsControlPanel.Controls.Add(DayMonthPicker);
-            OptionsControlPanel.Controls.Add(DayMonthComboBox);
             OptionsControlPanel.Controls.Add(MaxBadPassPicker);
             OptionsControlPanel.Controls.Add(AccountExpirationCheckbox);
             OptionsControlPanel.Controls.Add(MaxBadPassCheckbox);
@@ -110,23 +107,6 @@
             OptionsControlPanel.TabIndex = 5;
             OptionsControlPanel.TabStop = false;
             OptionsControlPanel.Text = "OPTIONAL";
-            // 
-            // DayMonthPicker
-            // 
-            DayMonthPicker.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            DayMonthPicker.Location = new Point(451, 268);
-            DayMonthPicker.Name = "DayMonthPicker";
-            DayMonthPicker.Size = new Size(120, 27);
-            DayMonthPicker.TabIndex = 9;
-            // 
-            // DayMonthComboBox
-            // 
-            DayMonthComboBox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            DayMonthComboBox.FormattingEnabled = true;
-            DayMonthComboBox.Location = new Point(211, 268);
-            DayMonthComboBox.Name = "DayMonthComboBox";
-            DayMonthComboBox.Size = new Size(196, 29);
-            DayMonthComboBox.TabIndex = 8;
             // 
             // MaxBadPassPicker
             // 
@@ -160,6 +140,14 @@
             MaxBadPassCheckbox.UseVisualStyleBackColor = true;
             MaxBadPassCheckbox.CheckedChanged += MaxBadPassCheckbox_CheckedChanged;
             // 
+            // DayMonthPicker
+            // 
+            DayMonthPicker.CalendarFont = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            DayMonthPicker.Location = new Point(267, 268);
+            DayMonthPicker.Name = "DayMonthPicker";
+            DayMonthPicker.Size = new Size(304, 27);
+            DayMonthPicker.TabIndex = 8;
+            // 
             // CreateUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
@@ -180,7 +168,6 @@
             Load += CreateUserForm_Load;
             OptionsControlPanel.ResumeLayout(false);
             OptionsControlPanel.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)DayMonthPicker).EndInit();
             ((System.ComponentModel.ISupportInitialize)MaxBadPassPicker).EndInit();
             ResumeLayout(false);
             PerformLayout();
@@ -196,8 +183,7 @@
         private GroupBox OptionsControlPanel;
         private CheckBox MaxBadPassCheckbox;
         private CheckBox AccountExpirationCheckbox;
-        private NumericUpDown DayMonthPicker;
-        private ComboBox DayMonthComboBox;
         private NumericUpDown MaxBadPassPicker;
+        private DateTimePicker DayMonthPicker;
     }
 }
