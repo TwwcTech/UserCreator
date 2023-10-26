@@ -15,7 +15,6 @@ namespace UserCreator.Frontend.PrimaryFrames
             ActiveControl = CreateButton;
 
             MaxBadPassPicker.Enabled = false;
-            DayMonthComboBox.Enabled = false;
             DayMonthPicker.Enabled = false;
         }
 
@@ -38,9 +37,8 @@ namespace UserCreator.Frontend.PrimaryFrames
                     newLocalUser.Password = NewPasswordTextbox.Text.Trim();
                     newLocalUser.EnableAdmin = AdminCheckbox.Checked;
                     newLocalUser.Description = DescriptionTextbox.Text.Trim();
-                    // max bad password attempts
-                    // account expiration date 
-                    // add the logic for both 
+                    newLocalUser.MaxBadPassword = MaxBadPassCheckbox.Checked ? (int)MaxBadPassPicker.Value : default;
+                    newLocalUser.AccountExpirationLength = AccountExpirationCheckbox.Checked ? DayMonthPicker.Value : default;
                     newLocalUser.CreateNewUser();
                 }
                 else
@@ -66,12 +64,10 @@ namespace UserCreator.Frontend.PrimaryFrames
         {
             if (AccountExpirationCheckbox.Checked)
             {
-                DayMonthComboBox.Enabled = true;
                 DayMonthPicker.Enabled = true;
             }
             else
             {
-                DayMonthComboBox.Enabled = false;
                 DayMonthPicker.Enabled = false;
             }
         }
