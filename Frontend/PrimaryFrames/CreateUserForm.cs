@@ -39,7 +39,7 @@ namespace UserCreator.Frontend.PrimaryFrames
                     newLocalUser.Description = DescriptionTextbox.Text.Trim();
                     newLocalUser.MaxBadPassword = MaxBadPassCheckbox.Checked ? (int)MaxBadPassPicker.Value : default;
                     newLocalUser.AccountExpirationLength = AccountExpirationCheckbox.Checked ? DayMonthPicker.Value : default;
-                    newLocalUser.CreateNewUser();
+                    newLocalUser.CreateUser();
                 }
                 else
                 {
