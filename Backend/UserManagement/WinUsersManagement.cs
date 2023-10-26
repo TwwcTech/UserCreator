@@ -73,7 +73,7 @@ namespace UserCreator.Backend.UserManagement
 
         public WinUsersManagement() { }
 
-        public void CreateNewUser(string dayOrMonth = null!)
+        public void CreateNewUser()
         {
             using (DirectoryEntry localMachine = new(_localMachineEnvironement))
             {
