@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             UpdateButton = new Button();
+            UsersCombobox = new ComboBox();
             SuspendLayout();
             // 
             // UpdateButton
@@ -42,11 +43,22 @@
             UpdateButton.UseVisualStyleBackColor = true;
             UpdateButton.Click += UpdateButton_Click;
             // 
+            // UsersCombobox
+            // 
+            UsersCombobox.DropDownStyle = ComboBoxStyle.DropDownList;
+            UsersCombobox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            UsersCombobox.FormattingEnabled = true;
+            UsersCombobox.Location = new Point(170, 106);
+            UsersCombobox.Name = "UsersCombobox";
+            UsersCombobox.Size = new Size(443, 29);
+            UsersCombobox.TabIndex = 1;
+            // 
             // UpdateUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             ClientSize = new Size(800, 588);
+            Controls.Add(UsersCombobox);
             Controls.Add(UpdateButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
@@ -62,5 +74,6 @@
         #endregion
 
         private Button UpdateButton;
+        private ComboBox UsersCombobox;
     }
 }
