@@ -21,8 +21,7 @@ namespace UserCreator.Backend.UserManagement
             get => _username!;
             set
             {
-                _username = _lowercase.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : null;
-                _username ??= string.Empty;
+                _username = _lowercase.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : string.Empty;
             }
         }
 
@@ -88,12 +87,14 @@ namespace UserCreator.Backend.UserManagement
                             newUser.Invoke("Put", new object[] { "Description", Description });
                         }
 
-                        //newUser.Properties[nameof(Description)].Value = !string.IsNullOrWhiteSpace(Description) ? Description : string.Empty;
+                        //newUser.Properties[nameof(Description)].Value = !string.IsNullOrWhiteSpace(Description) ? Description : default;
 
                         if (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default)
                         {
                             newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
                         }
+
+                        //newUser.Properties["LockoutThreshold"].Value = (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default) ? MaxBadPassword : default;
 
                         if (AccountExpirationLength != default || AccountExpirationLength != DateTime.Today)
                         {
