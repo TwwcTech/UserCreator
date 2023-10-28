@@ -21,7 +21,7 @@ namespace UserCreator.Backend.UserManagement
             get => _username!;
             set
             {
-                _username = _lowercase.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : string.Empty;
+                _username = _lowercase.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : value.Trim();
             }
         }
 
@@ -44,8 +44,7 @@ namespace UserCreator.Backend.UserManagement
             {
                 if (_lowercase.IsMatch(value[0].ToString()))
                 {
-                    string updatedBegginningLetter = value[0].ToString().ToUpper();
-                    value = value.Replace(value[0], Convert.ToChar(updatedBegginningLetter));
+                    value = value.Replace(value[0].ToString(), value[0].ToString().ToUpper());
                     value += !value.EndsWith(".") ? "." : string.Empty;
                 }
                 _description = value.Trim();
@@ -217,10 +216,12 @@ namespace UserCreator.Backend.UserManagement
             {
                 foreach (DirectoryEntry entry in localMachine.Children)
                 {
-                    if (entry.SchemaClassName == "User")
-                    {
-                        LocalUsers = new string[] { entry.Name };
-                    }
+                    LocalUsers = (entry.SchemaClassName == "User") ? new string[] { entry.Name } : null!;
+
+                    //if (entry.SchemaClassName == "User")
+                    //{
+                    //    LocalUsers = new string[] { entry.Name };
+                    //}
                 }
             }
         }
