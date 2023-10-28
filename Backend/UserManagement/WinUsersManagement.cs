@@ -5,7 +5,7 @@ namespace UserCreator.Backend.UserManagement
 {
     internal class WinUsersManagement
     {
-        private string _localMachineEnvironement = $"WinNT://{Environment.MachineName},computer";
+        private readonly string _localMachineEnvironement = $"WinNT://{Environment.MachineName},computer";
         private readonly Regex _lowercaseMatch = new(@"[a-z]");
 
         private string? _username;
