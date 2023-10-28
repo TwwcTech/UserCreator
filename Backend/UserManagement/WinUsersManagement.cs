@@ -14,6 +14,7 @@ namespace UserCreator.Backend.UserManagement
         private string? _description;
         private int _maxBadPassword;
         private DateTime _accountExpirationDate;
+        private string[] _localUsers = null!;
 
         public string Username
         {
@@ -62,6 +63,12 @@ namespace UserCreator.Backend.UserManagement
         {
             get => _accountExpirationDate;
             set => _accountExpirationDate = value;
+        }
+
+        public string[] LocalUsers
+        {
+            get => _localUsers;
+            private set => _localUsers = value;
         }
 
         public WinUsersManagement() { }
@@ -198,6 +205,20 @@ namespace UserCreator.Backend.UserManagement
                         {
                             throw new Exception(ex.ToString());
                         }
+                    }
+                }
+            }
+        }
+
+        public void GetLocalWindowsUsers()
+        {
+            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            {
+                foreach (DirectoryEntry entry in localMachine.Children)
+                {
+                    if (entry.SchemaClassName == "User")
+                    {
+                        LocalUsers = new string[] { entry.Name };
                     }
                 }
             }
