@@ -14,16 +14,22 @@ namespace UserCreator.Backend.Validator
                     emptyTextboxes--;
                 }
             }
-            return (emptyTextboxes == 0) ? false : true;
+            return (emptyTextboxes == 0) ? true : false;
         }
 
         public static bool IsPasswordSecure(string password)
         {
-            Regex letterMatch = new(@"(?=.*[a-z])(?=.*[A-Z])");
-            Regex numberMatch = new("/d");
-            Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
+            //Regex lowerMatch = new("[a-z]");
+            //Regex upperMatch = new("[A-Z]");
+            //Regex numberMatch = new("/d");
+            //Regex symbolMatch = new("[-!@#$%^&*()?_,.]");
+            Regex securityCriteria = new(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).*$");
 
-            return (password.Length >= 8 && letterMatch.IsMatch(password) && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password));
+            if (password.Length >= 8 && securityCriteria.IsMatch(password))
+            {
+                return true;
+            }
+            return false;
         }
     }
 }
