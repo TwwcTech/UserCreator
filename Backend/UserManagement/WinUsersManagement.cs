@@ -40,15 +40,7 @@ namespace UserCreator.Backend.UserManagement
         public string Description
         {
             get => _description!;
-            set
-            {
-                if (_lowercase.IsMatch(value[0].ToString()))
-                {
-                    value = value.Replace(value[0].ToString(), value[0].ToString().ToUpper());
-                    value += !value.EndsWith(".") ? "." : string.Empty;
-                }
-                _description = value.Trim();
-            }
+            set => _description = value;
         }
 
         public int MaxBadPassword
@@ -69,41 +61,41 @@ namespace UserCreator.Backend.UserManagement
             private set => _localUsers = value;
         }
 
-        public WinUsersManagement() { }
-
         public void CreateUser()
         {
-            using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-            {
-                using (DirectoryEntry newUser = localMachine.Children.Add(Username, "user"))
-                {
-                    try
-                    {
-                        newUser.Invoke("SetPassword", new object[] { Password });
+            using ()
 
-                        if (!string.IsNullOrWhiteSpace(Description))
-                        {
-                            newUser.Invoke("Put", new object[] { "Description", Description });
-                        }
+            //using (DirectoryEntry localMachine = new(_localMachineEnvironement))
+            //{
+            //    using (DirectoryEntry newUser = localMachine.Children.Add(Username, "User"))
+            //    {
+            //        try
+            //        {
+            //            newUser.Invoke("SetPassword", new object[] { Password });
 
-                        if (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default)
-                        {
-                            newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
-                        }
+            //            if (!string.IsNullOrWhiteSpace(Description))
+            //            {
+            //                newUser.Invoke("Put", new object[] { "Description", Description });
+            //            }
 
-                        if (AccountExpirationLength != default || AccountExpirationLength != DateTime.Today)
-                        {
-                            const long maxDate = 0x7FFFFFFFFFFFFFFF;
-                            newUser.Properties["AccountExpires"].Value = AccountExpirationLength.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationLength.ToFileTime();
-                        }
+            //            if (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default)
+            //            {
+            //                newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
+            //            }
 
-                        newUser.CommitChanges();
-                    }
-                    catch (Exception ex)
-                    {
-                        throw new Exception(ex.ToString());
-                    }
-                }
+            //            if (AccountExpirationLength != default || AccountExpirationLength != DateTime.Today)
+            //            {
+            //                const long maxDate = 0x7FFFFFFFFFFFFFFF;
+            //                newUser.Properties["AccountExpires"].Value = AccountExpirationLength.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationLength.ToFileTime();
+            //            }
+
+            //            newUser.CommitChanges();
+            //        }
+            //        catch (Exception ex)
+            //        {
+            //            throw new Exception(ex.ToString());
+            //        }
+            //    }
 
                 if (EnableAdmin)
                 {
@@ -212,7 +204,10 @@ namespace UserCreator.Backend.UserManagement
             {
                 foreach (DirectoryEntry entry in localMachine.Children)
                 {
-                    LocalUsers = (entry.SchemaClassName == "User") ? new string[] { entry.Name } : null!;
+                    if (entry.SchemaClassName == "User")
+                    {
+                        LocalUsers = new string[] { entry.Name };
+                    }
                 }
             }
         }
