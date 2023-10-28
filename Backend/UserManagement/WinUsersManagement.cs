@@ -6,7 +6,7 @@ namespace UserCreator.Backend.UserManagement
     internal class WinUsersManagement
     {
         private readonly string _localMachineEnvironement = $"WinNT://{Environment.MachineName},computer";
-        private readonly Regex _lowercaseMatch = new(@"[a-z]");
+        private readonly Regex _lowercase = new(@"[a-z]");
 
         private string? _username;
         private string? _password;
@@ -20,7 +20,7 @@ namespace UserCreator.Backend.UserManagement
             get => _username!;
             set
             {
-                _username = _lowercaseMatch.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : null;
+                _username = _lowercase.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : null;
                 _username ??= string.Empty;
             }
         }
@@ -42,7 +42,7 @@ namespace UserCreator.Backend.UserManagement
             get => _description!;
             set
             {
-                if (_lowercaseMatch.IsMatch(value[0].ToString()))
+                if (_lowercase.IsMatch(value[0].ToString()))
                 {
                     string updatedBegginningLetter = value[0].ToString().ToUpper();
                     value = value.Replace(value[0], Convert.ToChar(updatedBegginningLetter));
