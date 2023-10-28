@@ -50,26 +50,28 @@ namespace UserCreator.Frontend.PrimaryFrames
 
         private void MaxBadPassCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (MaxBadPassCheckbox.Checked)
-            {
-                MaxBadPassPicker.Enabled = true;
-            }
-            else
-            {
-                MaxBadPassPicker.Enabled = false;
-            }
+            MaxBadPassPicker.Enabled = MaxBadPassCheckbox.Checked ? true : false;
+            //if (MaxBadPassCheckbox.Checked)
+            //{
+            //    MaxBadPassPicker.Enabled = true;
+            //}
+            //else
+            //{
+            //    MaxBadPassPicker.Enabled = false;
+            //}
         }
 
         private void AccountExpirationCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if (AccountExpirationCheckbox.Checked)
-            {
-                DayMonthPicker.Enabled = true;
-            }
-            else
-            {
-                DayMonthPicker.Enabled = false;
-            }
+            DayMonthPicker.Enabled = AccountExpirationCheckbox.Checked ? true : false;
+            //if (AccountExpirationCheckbox.Checked)
+            //{
+            //    DayMonthPicker.Enabled = true;
+            //}
+            //else
+            //{
+            //    DayMonthPicker.Enabled = false;
+            //}
         }
     }
 }

@@ -14,12 +14,13 @@ namespace UserCreator.Backend.Validator
                     emptyTextboxes--;
                 }
             }
+            return (emptyTextboxes == 0) ? false : true;
 
-            if (emptyTextboxes == 0)
-            {
-                return false;
-            }
-            return true;
+            //if (emptyTextboxes == 0)
+            //{
+            //    return false;
+            //}
+            //return true;
         }
 
         public static bool IsPasswordSecure(string password)
@@ -28,11 +29,13 @@ namespace UserCreator.Backend.Validator
             Regex numberMatch = new("/d");
             Regex symbolMatch = new(@"[-!@#$%^&*()?_,.]");
 
-            if (password.Length >= 8 && letterMatch.IsMatch(password) && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password))
-            {
-                return true;
-            }
-            return false;
+            return (password.Length >= 8 && letterMatch.IsMatch(password) && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password));
+
+            //if (password.Length >= 8 && letterMatch.IsMatch(password) && numberMatch.IsMatch(password) && symbolMatch.IsMatch(password))
+            //{
+            //    return true;
+            //}
+            //return false;
         }
     }
 }

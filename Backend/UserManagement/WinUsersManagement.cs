@@ -50,12 +50,9 @@ namespace UserCreator.Backend.UserManagement
                 {
                     string updatedBegginningLetter = value[0].ToString().ToUpper();
                     value = value.Replace(value[0], Convert.ToChar(updatedBegginningLetter));
-                    if (!value.EndsWith("."))
-                    {
-                        value += ".";
-                    }
+                    value += !value.EndsWith(".") ? "." : string.Empty;
                 }
-                _description = value;
+                _description = value.Trim();
             }
         }
 
@@ -164,6 +161,7 @@ namespace UserCreator.Backend.UserManagement
                     if (maxBadPassUpdate != null)
                     {
                         maxBadPassUpdate.Properties["LockoutThreshold"].Value = MaxBadPassword;
+                        maxBadPassUpdate.CommitChanges();
                     }
                 }
             }
@@ -179,6 +177,7 @@ namespace UserCreator.Backend.UserManagement
                     {
                         const long maxDate = 0x7FFFFFFFFFFFFFFF;
                         accountExpirationUpdate.Properties["AccountExpires"].Value = AccountExpirationLength.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationLength.ToFileTime();
+                        accountExpirationUpdate.CommitChanges();
                     }
                 }
             }
