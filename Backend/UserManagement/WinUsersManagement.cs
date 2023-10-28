@@ -3,10 +3,10 @@ using System.Text.RegularExpressions;
 
 namespace UserCreator.Backend.UserManagement
 {
-    internal class WinUsersManagement
+    internal partial class WinUsersManagement
     {
         private readonly string _localMachineEnvironement = $"WinNT://{Environment.MachineName},computer";
-        private readonly Regex _lowercase = new(@"[a-z]");
+        private readonly Regex _lowercase = MyRegex();
 
         private string? _username;
         private string? _password;
@@ -80,6 +80,8 @@ namespace UserCreator.Backend.UserManagement
                         {
                             newUser.Invoke("Put", new object[] { "Description", Description });
                         }
+
+                        //newUser.Properties[nameof(Description)].Value = !string.IsNullOrWhiteSpace(Description) ? Description : string.Empty;
 
                         if (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default)
                         {
@@ -200,5 +202,8 @@ namespace UserCreator.Backend.UserManagement
                 }
             }
         }
+
+        [GeneratedRegex("[a-z]")]
+        private static partial Regex MyRegex();
     }
 }
