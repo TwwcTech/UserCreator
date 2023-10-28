@@ -14,7 +14,7 @@ namespace UserCreator.Backend.UserManagement
         private string? _description;
         private int _maxBadPassword;
         private DateTime _accountExpirationDate;
-        private string[] _localUsers = null!;
+        private string[]? _localUsers;
 
         public string Username
         {
@@ -65,7 +65,7 @@ namespace UserCreator.Backend.UserManagement
 
         public string[] LocalUsers
         {
-            get => _localUsers;
+            get => _localUsers!;
             private set => _localUsers = value;
         }
 
@@ -86,14 +86,10 @@ namespace UserCreator.Backend.UserManagement
                             newUser.Invoke("Put", new object[] { "Description", Description });
                         }
 
-                        //newUser.Properties[nameof(Description)].Value = !string.IsNullOrWhiteSpace(Description) ? Description : default;
-
                         if (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default)
                         {
                             newUser.Properties["LockoutThreshold"].Value = MaxBadPassword;
                         }
-
-                        //newUser.Properties["LockoutThreshold"].Value = (!int.IsNegative(MaxBadPassword) || MaxBadPassword != default) ? MaxBadPassword : default;
 
                         if (AccountExpirationLength != default || AccountExpirationLength != DateTime.Today)
                         {
@@ -217,11 +213,6 @@ namespace UserCreator.Backend.UserManagement
                 foreach (DirectoryEntry entry in localMachine.Children)
                 {
                     LocalUsers = (entry.SchemaClassName == "User") ? new string[] { entry.Name } : null!;
-
-                    //if (entry.SchemaClassName == "User")
-                    //{
-                    //    LocalUsers = new string[] { entry.Name };
-                    //}
                 }
             }
         }
