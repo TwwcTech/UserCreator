@@ -20,12 +20,8 @@ namespace UserCreator.Backend.UserManagement
             get => _username!;
             set
             {
-                if (_lowercaseMatch.IsMatch(value[0].ToString()))
-                {
-                    string updatedBegginningCharacter = value[0].ToString().ToUpper();
-                    value = value.Replace(value[0], Convert.ToChar(updatedBegginningCharacter));
-                }
-                _username = value;
+                _username = _lowercaseMatch.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : null;
+                _username ??= string.Empty;
             }
         }
 
