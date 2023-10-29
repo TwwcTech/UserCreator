@@ -9,6 +9,8 @@ namespace UserCreator.Backend.UserManagement
         private static partial Regex LowercaseRegex();
         private readonly Regex _lowercase = LowercaseRegex();
 
+        private string[] _accountsToHide = { "Administrator", "DefaultAccount", "Guest", "WDAGUtilityAccount" };
+
         private string? _username;
         private string? _password;
         private bool _enableAdmin = false;
@@ -152,7 +154,11 @@ namespace UserCreator.Backend.UserManagement
 
             foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>())
             {
-                LocalUsers.Add(user.SamAccountName);
+                if (!_accountsToHide.Contains(user.SamAccountName))
+                {
+                    LocalUsers.Add(user.SamAccountName);
+                }
+                //LocalUsers.Add(user.SamAccountName);
             }
         }
     }
