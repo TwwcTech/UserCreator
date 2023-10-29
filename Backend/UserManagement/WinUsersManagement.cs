@@ -9,14 +9,13 @@ namespace UserCreator.Backend.UserManagement
         private static partial Regex LowercaseRegex();
         private readonly Regex _lowercase = LowercaseRegex();
 
-        private string[] _accountsToHide = { "Administrator", "DefaultAccount", "Guest", "WDAGUtilityAccount" };
-
         private string? _username;
         private string? _password;
         private bool _enableAdmin = false;
         private string? _description;
         private DateTime _accountExpirationDate;
         private List<string>? _localUsers = new();
+        private List<string> _accountsToHide = new() { "DefaultAccount", "Guest", "Administrator", "WDAGUtilityAccount" };
 
         public string Username
         {
