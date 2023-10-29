@@ -5,14 +5,16 @@ namespace UserCreator.Backend.UserManagement
 {
     internal partial class WinUsersManagement
     {
-        private readonly Regex _lowercase = MyRegex();
+        [GeneratedRegex("[a-z]")]
+        private static partial Regex LowercaseRegex();
+        private readonly Regex _lowercase = LowercaseRegex();
 
         private string? _username;
         private string? _password;
         private bool _enableAdmin = false;
         private string? _description;
         private DateTime _accountExpirationDate;
-        private List<string>? _localUsers = new List<string>();
+        private List<string>? _localUsers = new();
 
         public string Username
         {
@@ -153,8 +155,5 @@ namespace UserCreator.Backend.UserManagement
                 LocalUsers.Add(user.SamAccountName);
             }
         }
-
-        [GeneratedRegex("[a-z]")]
-        private static partial Regex MyRegex();
     }
 }
