@@ -12,7 +12,7 @@ namespace UserCreator.Backend.UserManagement
         private bool _enableAdmin = false;
         private string? _description;
         private DateTime _accountExpirationDate;
-        private string[]? _localUsers;
+        private List<string>? _localUsers = new List<string>();
 
         public string Username
         {
@@ -47,7 +47,7 @@ namespace UserCreator.Backend.UserManagement
             set => _accountExpirationDate = value;
         }
 
-        public string[] LocalUsers
+        public List<string> LocalUsers
         {
             get => _localUsers!;
             private set => _localUsers = value;
@@ -56,120 +56,111 @@ namespace UserCreator.Backend.UserManagement
         public void CreateUser()
         {
             using PrincipalContext context = new(ContextType.Machine);
-            UserPrincipal user = new(context)
+            UserPrincipal newUser = new(context)
             {
                 SamAccountName = Username,
                 Enabled = true,
                 Description = !string.IsNullOrWhiteSpace(Description) ? Description : string.Empty,
                 AccountExpirationDate = AccountExpirationLength != default || AccountExpirationLength != DateTime.Today ? AccountExpirationLength : null
             };
-            user.SetPassword(Password);
-            user.Save();
+            newUser.SetPassword(Password);
+            newUser.Save();
 
             if (EnableAdmin)
             {
                 using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
-                groupPrincipal.Members.Add(user);
+                groupPrincipal.Members.Add(newUser);
                 groupPrincipal.Save();
             }
         }
 
-        //public void UpdatePassword()
-        //{
-        //    using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-        //    {
-        //        using (DirectoryEntry userPasswordUpdate = localMachine.Children.Find(Username))
-        //        {
-        //            if (userPasswordUpdate != null)
-        //            {
-        //                userPasswordUpdate.Invoke("SetPassword", new object[] { Password });
-        //                userPasswordUpdate.CommitChanges();
-        //            }
-        //        }
-        //    }
-        //}
+        public void UpdatePassword()
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                return;
+            }
 
-        //public void UpdateDescription()
-        //{
-        //    using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-        //    {
-        //        using (DirectoryEntry userDescriptionUpdate = localMachine.Children.Find(Username))
-        //        {
-        //            if (userDescriptionUpdate != null)
-        //            {
-        //                userDescriptionUpdate.Properties["Description"].Value = Description;
-        //                userDescriptionUpdate.CommitChanges();
-        //            }
-        //        }
-        //    }
-        //}
+            using PrincipalContext context = new(ContextType.Machine);
+            UserPrincipal userPasswordUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
 
-        //public void UpdateMaxBadPasswords()
-        //{
-        //    using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-        //    {
-        //        using (DirectoryEntry maxBadPassUpdate = localMachine.Children.Find(Username))
-        //        {
-        //            if (maxBadPassUpdate != null)
-        //            {
-        //                maxBadPassUpdate.Properties["LockoutThreshold"].Value = MaxBadPassword;
-        //                maxBadPassUpdate.CommitChanges();
-        //            }
-        //        }
-        //    }
-        //}
+            if (userPasswordUpdate != null)
+            {
+                if (!string.IsNullOrWhiteSpace(Password))
+                {
+                    userPasswordUpdate.SetPassword(Password);
+                    userPasswordUpdate.Save();
+                }
+            }
+        }
 
-        //public void UpdateAccountExpirationDate()
-        //{
-        //    using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-        //    {
-        //        using (DirectoryEntry accountExpirationUpdate = localMachine.Children.Find(Username))
-        //        {
-        //            if (accountExpirationUpdate != null)
-        //            {
-        //                const long maxDate = 0x7FFFFFFFFFFFFFFF;
-        //                accountExpirationUpdate.Properties["AccountExpires"].Value = AccountExpirationLength.ToFileTime() > DateTime.MaxValue.ToFileTime() - maxDate ? maxDate : AccountExpirationLength.ToFileTime();
-        //                accountExpirationUpdate.CommitChanges();
-        //            }
-        //        }
-        //    }
-        //}
+        public void UpdateDescription()
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                return;
+            }
 
-        //public void DeleteUser()
-        //{
-        //    using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-        //    {
-        //        using (DirectoryEntry userToDelete = localMachine.Children.Find(Username))
-        //        {
-        //            if (userToDelete != null)
-        //            {
-        //                try
-        //                {
-        //                    localMachine.Children.Remove(userToDelete);
-        //                    localMachine.CommitChanges();
-        //                }
-        //                catch (Exception ex)
-        //                {
-        //                    throw new Exception(ex.ToString());
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
+            using PrincipalContext context = new(ContextType.Machine);
+            UserPrincipal userDescriptionUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
 
-        //public void GetLocalWindowsUsers()
-        //{
-        //    using (DirectoryEntry localMachine = new(_localMachineEnvironement))
-        //    {
-        //        foreach (DirectoryEntry entry in localMachine.Children)
-        //        {
-        //            if (entry.SchemaClassName == "User")
-        //            {
-        //                LocalUsers = new string[] { entry.Name };
-        //            }
-        //        }
-        //    }
-        //}
+            if (userDescriptionUpdate != null)
+            {
+                if (!string.IsNullOrWhiteSpace(Description))
+                {
+                    userDescriptionUpdate.Description = Description;
+                    userDescriptionUpdate.Save();
+                }
+            }
+        }
+
+        public void UpdateAccountExpireDate()
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                return;
+            }
+
+            using PrincipalContext context = new(ContextType.Machine);
+            UserPrincipal userExpireDateUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
+
+            if (userExpireDateUpdate != null)
+            {
+                if (AccountExpirationLength != default && AccountExpirationLength != DateTime.Today)
+                {
+                    userExpireDateUpdate.AccountExpirationDate = AccountExpirationLength;
+                    userExpireDateUpdate.Save();
+                }
+            }
+        }
+
+        public void DeleteUser()
+        {
+            if (string.IsNullOrWhiteSpace(Username))
+            {
+                return;
+            }
+
+            using PrincipalContext context = new(ContextType.Machine);
+            UserPrincipal userToDelete = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
+
+            if (userToDelete != null)
+            {
+                userToDelete.Delete();
+            }
+        }
+
+        public void GetLocalWindowsUsers()
+        {
+            using PrincipalContext context = new(ContextType.Machine);
+            UserPrincipal userSearch = new(context);
+            PrincipalSearcher searcher = new(userSearch);
+
+            foreach (UserPrincipal user in searcher.FindAll())
+            {
+                LocalUsers.Add(user.SamAccountName);
+            }
+        }
 
         [GeneratedRegex("[a-z]")]
         private static partial Regex MyRegex();
