@@ -13,8 +13,6 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void CreateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = CreateButton;
-
-            MaxBadPassPicker.Enabled = false;
             DayMonthPicker.Enabled = false;
         }
 
@@ -31,14 +29,14 @@ namespace UserCreator.Frontend.PrimaryFrames
             {
                 if (InputValidator.IsPasswordSecure(NewPasswordTextbox.Text.Trim()))
                 {
-                    WinUsersManagement newLocalUser = new();
-
-                    newLocalUser.Username = NewUsernameTextbox.Text.Trim();
-                    newLocalUser.Password = NewPasswordTextbox.Text.Trim();
-                    newLocalUser.EnableAdmin = AdminCheckbox.Checked;
-                    newLocalUser.Description = DescriptionTextbox.Text.Trim();
-                    newLocalUser.MaxBadPassword = MaxBadPassCheckbox.Checked ? (int)MaxBadPassPicker.Value : default;
-                    newLocalUser.AccountExpirationLength = AccountExpirationCheckbox.Checked ? DayMonthPicker.Value : default;
+                    WinUsersManagement newLocalUser = new()
+                    {
+                        Username = NewUsernameTextbox.Text.Trim(),
+                        Password = NewPasswordTextbox.Text.Trim(),
+                        EnableAdmin = AdminCheckbox.Checked,
+                        Description = DescriptionTextbox.Text.Trim(),
+                        AccountExpirationLength = AccountExpirationCheckbox.Checked ? DayMonthPicker.Value : default
+                    };
                     newLocalUser.CreateUser();
                 }
                 else
@@ -46,11 +44,6 @@ namespace UserCreator.Frontend.PrimaryFrames
                     MessageBox.Show("Password must contain a number, a symbol, and must be at least 8 characters in length", "Password Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
-        }
-
-        private void MaxBadPassCheckbox_CheckedChanged(object sender, EventArgs e)
-        {
-            MaxBadPassPicker.Enabled = MaxBadPassCheckbox.Checked;
         }
 
         private void AccountExpirationCheckbox_CheckedChanged(object sender, EventArgs e)
