@@ -150,7 +150,7 @@ namespace UserCreator.Backend.UserManagement
             UserPrincipal userSearch = new(context);
             PrincipalSearcher searcher = new(userSearch);
 
-            foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>()) // if having errors, revert back w/out "Cast<>"
+            foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>())
             {
                 LocalUsers.Add(user.SamAccountName);
             }
