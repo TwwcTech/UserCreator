@@ -65,7 +65,6 @@ namespace UserCreator.Backend.UserManagement
             };
             newUser.SetPassword(Password);
             newUser.Save();
-
             if (EnableAdmin)
             {
                 using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
@@ -83,7 +82,6 @@ namespace UserCreator.Backend.UserManagement
 
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userPasswordUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
-
             if (userPasswordUpdate != null)
             {
                 if (!string.IsNullOrWhiteSpace(Password))
@@ -103,7 +101,6 @@ namespace UserCreator.Backend.UserManagement
 
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userDescriptionUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
-
             if (userDescriptionUpdate != null)
             {
                 if (!string.IsNullOrWhiteSpace(Description))
@@ -123,7 +120,6 @@ namespace UserCreator.Backend.UserManagement
 
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userExpireDateUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
-
             if (userExpireDateUpdate != null)
             {
                 if (AccountExpirationLength != default && AccountExpirationLength != DateTime.Today)
@@ -143,11 +139,7 @@ namespace UserCreator.Backend.UserManagement
 
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userToDelete = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
-
-            if (userToDelete != null)
-            {
-                userToDelete.Delete();
-            }
+            userToDelete?.Delete(); // if having issues revert back to the if branch
         }
 
         public void GetLocalWindowsUsers()
@@ -156,7 +148,7 @@ namespace UserCreator.Backend.UserManagement
             UserPrincipal userSearch = new(context);
             PrincipalSearcher searcher = new(userSearch);
 
-            foreach (UserPrincipal user in searcher.FindAll())
+            foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>()) // if having errors, revert back w/out "Cast<>"
             {
                 LocalUsers.Add(user.SamAccountName);
             }
