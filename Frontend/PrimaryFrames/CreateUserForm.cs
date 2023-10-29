@@ -18,9 +18,7 @@ namespace UserCreator.Frontend.PrimaryFrames
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            TextBox[] textBoxes = { NewUsernameTextbox, NewPasswordTextbox };
-            bool areTextboxesEmpty = InputValidator.AreTextboxesEmpty(textBoxes);
-
+            bool areTextboxesEmpty = InputValidator.AreTextboxesEmpty(new TextBox[] { NewUsernameTextbox, NewPasswordTextbox });
             if (areTextboxesEmpty)
             {
                 MessageBox.Show("Entries must not be empty", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);

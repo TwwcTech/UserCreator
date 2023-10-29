@@ -14,7 +14,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             ActiveControl = UpdateButton;
             WinUsersManagement localUserAccounts = new();
             localUserAccounts.GetLocalWindowsUsers();
-            
+
             foreach (string userAccount in localUserAccounts.LocalUsers)
             {
                 UsersCombobox.Items.Add(userAccount);
