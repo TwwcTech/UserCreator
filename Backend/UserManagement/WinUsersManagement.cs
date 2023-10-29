@@ -158,7 +158,6 @@ namespace UserCreator.Backend.UserManagement
                 {
                     LocalUsers.Add(user.SamAccountName);
                 }
-                //LocalUsers.Add(user.SamAccountName);
             }
         }
     }
