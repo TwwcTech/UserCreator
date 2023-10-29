@@ -65,6 +65,13 @@ namespace UserCreator.Backend.UserManagement
             };
             user.SetPassword(Password);
             user.Save();
+
+            if (EnableAdmin)
+            {
+                using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
+                groupPrincipal.Members.Add(user);
+                groupPrincipal.Save();
+            }
         }
 
         //public void UpdatePassword()
