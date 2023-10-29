@@ -1,6 +1,4 @@
-﻿using UserCreator.Backend.UserManagement;
-
-namespace UserCreator.Frontend.PrimaryFrames
+﻿namespace UserCreator.Frontend.PrimaryFrames
 {
     public partial class UpdateUserForm : Form
     {
@@ -12,14 +10,6 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void UpdateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = UpdateButton;
-
-            WinUsersManagement localUserManagement = new WinUsersManagement();
-            localUserManagement.GetLocalWindowsUsers();
-
-            foreach (string user in localUserManagement.LocalUsers)
-            {
-                UsersCombobox.Items.Add(user);
-            }
         }
 
         private void UpdateButton_Click(object sender, EventArgs e)
