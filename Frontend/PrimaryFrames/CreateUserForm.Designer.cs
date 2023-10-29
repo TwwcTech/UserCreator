@@ -42,20 +42,20 @@
             // NewUsernameTextbox
             // 
             NewUsernameTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            NewUsernameTextbox.Location = new Point(126, 44);
+            NewUsernameTextbox.Location = new Point(18, 44);
             NewUsernameTextbox.Name = "NewUsernameTextbox";
             NewUsernameTextbox.PlaceholderText = "Enter New User Name";
-            NewUsernameTextbox.Size = new Size(376, 27);
+            NewUsernameTextbox.Size = new Size(593, 27);
             NewUsernameTextbox.TabIndex = 0;
             // 
             // NewPasswordTextbox
             // 
             NewPasswordTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            NewPasswordTextbox.Location = new Point(126, 108);
+            NewPasswordTextbox.Location = new Point(18, 108);
             NewPasswordTextbox.Name = "NewPasswordTextbox";
             NewPasswordTextbox.PasswordChar = '*';
             NewPasswordTextbox.PlaceholderText = "Enter New Password";
-            NewPasswordTextbox.Size = new Size(376, 27);
+            NewPasswordTextbox.Size = new Size(593, 27);
             NewPasswordTextbox.TabIndex = 1;
             // 
             // AdminCheckbox
