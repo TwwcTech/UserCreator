@@ -29,12 +29,13 @@
         private void InitializeComponent()
         {
             DeleteButton = new Button();
+            DeleteUserComboBox = new ComboBox();
             SuspendLayout();
             // 
             // DeleteButton
             // 
             DeleteButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            DeleteButton.Location = new Point(301, 355);
+            DeleteButton.Location = new Point(214, 348);
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(196, 43);
             DeleteButton.TabIndex = 0;
@@ -42,11 +43,21 @@
             DeleteButton.UseVisualStyleBackColor = true;
             DeleteButton.Click += DeleteButton_Click;
             // 
+            // DeleteUserComboBox
+            // 
+            DeleteUserComboBox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            DeleteUserComboBox.FormattingEnabled = true;
+            DeleteUserComboBox.Location = new Point(71, 78);
+            DeleteUserComboBox.Name = "DeleteUserComboBox";
+            DeleteUserComboBox.Size = new Size(503, 29);
+            DeleteUserComboBox.TabIndex = 1;
+            // 
             // DeleteUserForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 450);
+            ClientSize = new Size(634, 450);
+            Controls.Add(DeleteUserComboBox);
             Controls.Add(DeleteButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             MaximizeBox = false;
@@ -62,5 +73,6 @@
         #endregion
 
         private Button DeleteButton;
+        private ComboBox DeleteUserComboBox;
     }
 }
