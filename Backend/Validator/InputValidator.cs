@@ -2,8 +2,10 @@
 
 namespace UserCreator.Backend.Validator
 {
-    internal static class InputValidator
+    internal static partial class InputValidator
     {
+        private static readonly Regex _securityCriteria = PasswordRegex();
+
         public static bool AreTextboxesEmpty(TextBox[] textboxes)
         {
             int emptyTextboxes = textboxes.Length;
@@ -14,22 +16,19 @@ namespace UserCreator.Backend.Validator
                     emptyTextboxes--;
                 }
             }
-            return (emptyTextboxes == 0) ? true : false;
+            if (emptyTextboxes == 0)
+            {
+                return false;
+            }
+            return true;
         }
 
         public static bool IsPasswordSecure(string password)
         {
-            //Regex lowerMatch = new("[a-z]");
-            //Regex upperMatch = new("[A-Z]");
-            //Regex numberMatch = new("/d");
-            //Regex symbolMatch = new("[-!@#$%^&*()?_,.]");
-            Regex securityCriteria = new(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).*$");
-
-            if (password.Length >= 8 && securityCriteria.IsMatch(password))
-            {
-                return true;
-            }
-            return false;
+            return password.Length >= 8 && _securityCriteria.IsMatch(password);
         }
+
+        [GeneratedRegex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).*$")]
+        private static partial Regex PasswordRegex();
     }
 }
