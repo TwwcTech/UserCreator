@@ -23,7 +23,17 @@ namespace UserCreator.Frontend.PrimaryFrames
 
         private void DeleteButton_Click(object sender, EventArgs e)
         {
+            if (string.IsNullOrWhiteSpace(DeleteUserComboBox.Text))
+            {
+                MessageBox.Show("Must select a user to update", "User Update Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
 
+            WinUsersManagement deleteUserManagement = new()
+            {
+                Username = DeleteUserComboBox.Text.Trim()
+            };
+            deleteUserManagement.DeleteUser();
         }
     }
 }
