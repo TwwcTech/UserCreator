@@ -1,6 +1,4 @@
-﻿using System.Diagnostics.CodeAnalysis;
-using System.DirectoryServices.AccountManagement;
-using System.Runtime.CompilerServices;
+﻿using System.DirectoryServices.AccountManagement;
 using System.Text.RegularExpressions;
 
 namespace UserCreator.Backend.UserManagement
@@ -73,7 +71,7 @@ namespace UserCreator.Backend.UserManagement
             {
                 using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
                 groupPrincipal.Members.Add(newUser);
-                await  Task.Run(groupPrincipal.Save);
+                await Task.Run(groupPrincipal.Save);
             }
             else
             {
