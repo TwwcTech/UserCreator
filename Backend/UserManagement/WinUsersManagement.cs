@@ -79,11 +79,6 @@ namespace UserCreator.Backend.UserManagement
 
         public void UpdatePassword()
         {
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                return;
-            }
-
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userPasswordUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
             if (userPasswordUpdate != null)
