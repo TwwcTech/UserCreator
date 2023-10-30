@@ -4,8 +4,6 @@ namespace UserCreator.Backend.Validator
 {
     internal static partial class InputValidator
     {
-        [GeneratedRegex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).*$")]
-        private static partial Regex PasswordRegex();
         private static readonly Regex _securityCriteria = PasswordRegex();
 
         public static bool AreTextboxesEmpty(TextBox[] textboxes)
@@ -29,5 +27,8 @@ namespace UserCreator.Backend.Validator
         {
             return password.Length >= 8 && _securityCriteria.IsMatch(password);
         }
+
+        [GeneratedRegex(@"^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@#$%^&+=!])(?!.*\s).*$")]
+        private static partial Regex PasswordRegex();
     }
 }
