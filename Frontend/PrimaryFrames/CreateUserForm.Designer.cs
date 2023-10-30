@@ -110,6 +110,7 @@
             DayMonthPicker.Name = "DayMonthPicker";
             DayMonthPicker.Size = new Size(312, 27);
             DayMonthPicker.TabIndex = 8;
+            DayMonthPicker.ValueChanged += DayMonthPicker_ValueChanged;
             // 
             // AccountExpirationCheckbox
             // 

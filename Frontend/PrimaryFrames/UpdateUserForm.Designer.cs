@@ -78,7 +78,7 @@
             UpdatePassTextbox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             UpdatePassTextbox.Location = new Point(277, 38);
             UpdatePassTextbox.Name = "UpdatePassTextbox";
-            UpdatePassTextbox.PasswordChar = '^';
+            UpdatePassTextbox.PasswordChar = '*';
             UpdatePassTextbox.PlaceholderText = "New Password";
             UpdatePassTextbox.Size = new Size(432, 27);
             UpdatePassTextbox.TabIndex = 3;
@@ -125,6 +125,7 @@
             UpdateDateTimePicker.Name = "UpdateDateTimePicker";
             UpdateDateTimePicker.Size = new Size(315, 27);
             UpdateDateTimePicker.TabIndex = 7;
+            UpdateDateTimePicker.ValueChanged += UpdateDateTimePicker_ValueChanged;
             // 
             // groupBox1
             // 
