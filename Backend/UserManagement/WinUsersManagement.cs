@@ -66,14 +66,18 @@ namespace UserCreator.Backend.UserManagement
             };
             newUser.SetPassword(Password);
             newUser.Save();
-            using GroupPrincipal usersGroupPrinciple = GroupPrincipal.FindByIdentity(context, "Users");
-            usersGroupPrinciple.Members.Add(newUser);
-            usersGroupPrinciple.Save();
+
             if (EnableAdmin)
             {
                 using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
                 groupPrincipal.Members.Add(newUser);
                 groupPrincipal.Save();
+            }
+            else
+            {
+                using GroupPrincipal usersGroupPrinciple = GroupPrincipal.FindByIdentity(context, "Users");
+                usersGroupPrinciple.Members.Add(newUser);
+                usersGroupPrinciple.Save();
             }
         }
 
@@ -93,11 +97,6 @@ namespace UserCreator.Backend.UserManagement
 
         public void UpdateDescription()
         {
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                return;
-            }
-
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userDescriptionUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
             if (userDescriptionUpdate != null)
@@ -112,11 +111,6 @@ namespace UserCreator.Backend.UserManagement
 
         public void UpdateAccountExpireDate()
         {
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                return;
-            }
-
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userExpireDateUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
             if (userExpireDateUpdate != null)
@@ -131,11 +125,6 @@ namespace UserCreator.Backend.UserManagement
 
         public void DeleteUser()
         {
-            if (string.IsNullOrWhiteSpace(Username))
-            {
-                return;
-            }
-
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userToDelete = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
             userToDelete?.Delete(); // if having issues revert back to the if branch
