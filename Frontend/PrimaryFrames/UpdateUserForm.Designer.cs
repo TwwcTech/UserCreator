@@ -60,6 +60,7 @@
             UsersCombobox.Name = "UsersCombobox";
             UsersCombobox.Size = new Size(650, 29);
             UsersCombobox.TabIndex = 1;
+            UsersCombobox.DropDown += UsersCombobox_DropDown;
             // 
             // UpdatePassCheckbox
             // 
