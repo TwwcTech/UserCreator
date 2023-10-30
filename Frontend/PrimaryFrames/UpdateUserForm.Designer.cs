@@ -71,6 +71,7 @@
             UpdatePassCheckbox.TabIndex = 2;
             UpdatePassCheckbox.Text = "Update Password";
             UpdatePassCheckbox.UseVisualStyleBackColor = true;
+            UpdatePassCheckbox.CheckedChanged += UpdatePassCheckbox_CheckedChanged;
             // 
             // UpdatePassTextbox
             // 
@@ -92,6 +93,7 @@
             UpdateDescCheckbox.TabIndex = 4;
             UpdateDescCheckbox.Text = "Update Description";
             UpdateDescCheckbox.UseVisualStyleBackColor = true;
+            UpdateDescCheckbox.CheckedChanged += UpdateDescCheckbox_CheckedChanged;
             // 
             // UpdateDescTextbox
             // 
@@ -113,6 +115,7 @@
             UpdateAcctExpCheckbox.TabIndex = 6;
             UpdateAcctExpCheckbox.Text = "Update Account Expiration Date";
             UpdateAcctExpCheckbox.UseVisualStyleBackColor = true;
+            UpdateAcctExpCheckbox.CheckedChanged += UpdateAcctExpCheckbox_CheckedChanged;
             // 
             // UpdateDateTimePicker
             // 
