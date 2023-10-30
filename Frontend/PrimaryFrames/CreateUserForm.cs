@@ -13,12 +13,14 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void CreateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = CreateButton;
+
+            DayMonthPicker.Value = DateTime.Today.AddDays(1);
             DayMonthPicker.Enabled = false;
         }
 
         private void CreateButton_Click(object sender, EventArgs e)
         {
-            TextBox[] textboxes = { NewUsernameTextbox, NewPasswordTextbox};
+            TextBox[] textboxes = { NewUsernameTextbox, NewPasswordTextbox };
             bool areTextboxesEmpty = InputValidator.AreTextboxesEmpty(textboxes);
             if (!areTextboxesEmpty)
             {
@@ -48,6 +50,15 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void AccountExpirationCheckbox_CheckedChanged(object sender, EventArgs e)
         {
             DayMonthPicker.Enabled = AccountExpirationCheckbox.Checked;
+        }
+
+        private void DayMonthPicker_ValueChanged(object sender, EventArgs e)
+        {
+            if (DayMonthPicker.Value <= DateTime.Today)
+            {
+                MessageBox.Show("Account expire date must be at least one day ahead of the current date", "Account Expire Date Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                DayMonthPicker.Value = DateTime.Today.AddDays(1);
+            }
         }
     }
 }
