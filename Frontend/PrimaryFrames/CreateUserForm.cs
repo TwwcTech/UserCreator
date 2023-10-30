@@ -18,7 +18,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             DayMonthPicker.Enabled = false;
         }
 
-        private void CreateButton_Click(object sender, EventArgs e)
+        private async void CreateButton_Click(object sender, EventArgs e)
         {
             TextBox[] textboxes = { NewUsernameTextbox, NewPasswordTextbox };
             bool areTextboxesEmpty = InputValidator.AreTextboxesEmpty(textboxes);
@@ -38,7 +38,7 @@ namespace UserCreator.Frontend.PrimaryFrames
                         Description = DescriptionTextbox.Text.Trim(),
                         AccountExpirationLength = AccountExpirationCheckbox.Checked ? DayMonthPicker.Value : default
                     };
-                    newLocalUser.CreateUser();
+                    await Task.Run(newLocalUser.CreateUser);
                 }
                 else
                 {

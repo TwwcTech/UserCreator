@@ -54,7 +54,7 @@ namespace UserCreator.Backend.UserManagement
             private set => _localUsers = value;
         }
 
-        public void CreateUser()
+        public async Task CreateUser()
         {
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal newUser = new(context)
@@ -65,19 +65,19 @@ namespace UserCreator.Backend.UserManagement
                 AccountExpirationDate = AccountExpirationLength != default || AccountExpirationLength != DateTime.Today ? AccountExpirationLength : null
             };
             newUser.SetPassword(Password);
-            newUser.Save();
+            await Task.Run(newUser.Save);
 
             if (EnableAdmin)
             {
                 using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
                 groupPrincipal.Members.Add(newUser);
-                groupPrincipal.Save();
+                await  Task.Run(groupPrincipal.Save);
             }
             else
             {
                 using GroupPrincipal usersGroupPrinciple = GroupPrincipal.FindByIdentity(context, "Users");
                 usersGroupPrinciple.Members.Add(newUser);
-                usersGroupPrinciple.Save();
+                await Task.Run(usersGroupPrinciple.Save);
             }
         }
 
@@ -123,11 +123,11 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public void DeleteUser()
+        public async Task DeleteUser()
         {
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userToDelete = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
-            userToDelete?.Delete(); // if having issues revert back to the if branch
+            await Task.Run(userToDelete.Delete);
         }
 
         public void GetLocalWindowsUsers()

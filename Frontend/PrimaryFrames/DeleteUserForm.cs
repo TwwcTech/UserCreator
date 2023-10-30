@@ -21,7 +21,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             }
         }
 
-        private void DeleteButton_Click(object sender, EventArgs e)
+        private async void DeleteButton_Click(object sender, EventArgs e)
         {
             if (string.IsNullOrWhiteSpace(DeleteUserComboBox.Text))
             {
@@ -33,7 +33,31 @@ namespace UserCreator.Frontend.PrimaryFrames
             {
                 Username = DeleteUserComboBox.Text.Trim()
             };
-            deleteUserManagement.DeleteUser();
+
+            DialogResult messageBoxResult = MessageBox.Show($"Are you sure you want to delete this account? : {DeleteUserComboBox.Text.Trim()}", "Delete Account Prompt", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            switch (messageBoxResult)
+            {
+                case DialogResult.Yes:
+                    await Task.Run(deleteUserManagement.DeleteUser);
+                    break;
+                case DialogResult.No:
+                    break;
+                case DialogResult.Cancel:
+                    break;
+            }
+        }
+
+        private void DeleteUserComboBox_DropDown(object sender, EventArgs e)
+        {
+            DeleteUserComboBox.Items.Clear();
+
+            WinUsersManagement localUserAccounts = new();
+            localUserAccounts.GetLocalWindowsUsers();
+
+            foreach (string userAccount in localUserAccounts.LocalUsers)
+            {
+                DeleteUserComboBox.Items.Add(userAccount);
+            }
         }
     }
 }

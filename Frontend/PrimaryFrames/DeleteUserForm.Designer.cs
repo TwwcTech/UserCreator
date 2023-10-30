@@ -51,6 +51,7 @@
             DeleteUserComboBox.Name = "DeleteUserComboBox";
             DeleteUserComboBox.Size = new Size(503, 29);
             DeleteUserComboBox.TabIndex = 1;
+            DeleteUserComboBox.DropDown += DeleteUserComboBox_DropDown;
             // 
             // DeleteUserForm
             // 
