@@ -10,12 +10,12 @@ namespace UserCreator.Frontend.PrimaryFrames
             InitializeComponent();
         }
 
-        private void UpdateUserForm_Load(object sender, EventArgs e)
+        private async void UpdateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = UpdateButton;
 
             WinUsersManagement localUserAccounts = new();
-            localUserAccounts.GetLocalWindowsUsers();
+            await Task.Run(localUserAccounts.GetLocalWindowsUsers);
             foreach (string userAccount in localUserAccounts.LocalUsers)
             {
                 UsersCombobox.Items.Add(userAccount);
@@ -27,7 +27,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             UpdateDateTimePicker.Value = DateTime.Today.AddDays(1);
         }
 
-        private void UpdateButton_Click(object sender, EventArgs e)
+        private async void UpdateButton_Click(object sender, EventArgs e)
         {
             WinUsersManagement updateAccountManager = new();
 
@@ -52,7 +52,7 @@ namespace UserCreator.Frontend.PrimaryFrames
                     {
                         updateAccountManager.Username = UsersCombobox.Text.Trim();
                         updateAccountManager.Password = UpdatePassTextbox.Text;
-                        updateAccountManager.UpdatePassword();
+                        await Task.Run(updateAccountManager.UpdatePassword);
                     }
                     else
                     {
@@ -70,21 +70,14 @@ namespace UserCreator.Frontend.PrimaryFrames
             {
                 updateAccountManager.Username = UsersCombobox.Text.Trim();
                 updateAccountManager.Description = UpdateDescTextbox.Text.Trim();
-                updateAccountManager.UpdateDescription();
+                await Task.Run(updateAccountManager.UpdateDescription);
             }
 
             if (UpdateAcctExpCheckbox.Checked)
             {
-                if (UpdateDateTimePicker.Value != DateTime.Today)
-                {
-                    updateAccountManager.Username = UsersCombobox.Text.Trim();
-                    updateAccountManager.AccountExpirationLength = UpdateDateTimePicker.Value;
-                    updateAccountManager.UpdateAccountExpireDate();
-                }
-                else
-                {
-
-                }
+                updateAccountManager.Username = UsersCombobox.Text.Trim();
+                updateAccountManager.AccountExpirationLength = UpdateDateTimePicker.Value;
+                await Task.Run(updateAccountManager.UpdateAccountExpireDate);
             }
         }
 
@@ -109,6 +102,18 @@ namespace UserCreator.Frontend.PrimaryFrames
             {
                 MessageBox.Show("Account expire date must be at least one day ahead of the current date", "Account Expire Date Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 UpdateDateTimePicker.Value = DateTime.Today.AddDays(1);
+            }
+        }
+
+        private async void UsersCombobox_DropDown(object sender, EventArgs e)
+        {
+            UsersCombobox.Items.Clear();
+
+            WinUsersManagement localUserAccounts = new();
+            await Task.Run(localUserAccounts.GetLocalWindowsUsers);
+            foreach (string userAccount in localUserAccounts.LocalUsers)
+            {
+                UsersCombobox.Items.Add(userAccount);
             }
         }
     }

@@ -1,4 +1,6 @@
-﻿using System.DirectoryServices.AccountManagement;
+﻿using System.Diagnostics.CodeAnalysis;
+using System.DirectoryServices.AccountManagement;
+using System.Runtime.CompilerServices;
 using System.Text.RegularExpressions;
 
 namespace UserCreator.Backend.UserManagement
@@ -81,7 +83,7 @@ namespace UserCreator.Backend.UserManagement
             }
         }
 
-        public void UpdatePassword()
+        public async Task UpdatePassword()
         {
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userPasswordUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
@@ -90,12 +92,12 @@ namespace UserCreator.Backend.UserManagement
                 if (!string.IsNullOrWhiteSpace(Password))
                 {
                     userPasswordUpdate.SetPassword(Password);
-                    userPasswordUpdate.Save();
+                    await Task.Run(userPasswordUpdate.Save);
                 }
             }
         }
 
-        public void UpdateDescription()
+        public async Task UpdateDescription()
         {
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userDescriptionUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
@@ -104,12 +106,12 @@ namespace UserCreator.Backend.UserManagement
                 if (!string.IsNullOrWhiteSpace(Description))
                 {
                     userDescriptionUpdate.Description = Description;
-                    userDescriptionUpdate.Save();
+                    await Task.Run(userDescriptionUpdate.Save);
                 }
             }
         }
 
-        public void UpdateAccountExpireDate()
+        public async Task UpdateAccountExpireDate()
         {
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userExpireDateUpdate = UserPrincipal.FindByIdentity(context, IdentityType.SamAccountName, Username);
@@ -118,7 +120,7 @@ namespace UserCreator.Backend.UserManagement
                 if (AccountExpirationLength != default && AccountExpirationLength != DateTime.Today)
                 {
                     userExpireDateUpdate.AccountExpirationDate = AccountExpirationLength;
-                    userExpireDateUpdate.Save();
+                    await Task.Run(userExpireDateUpdate.Save);
                 }
             }
         }
@@ -135,7 +137,6 @@ namespace UserCreator.Backend.UserManagement
             using PrincipalContext context = new(ContextType.Machine);
             UserPrincipal userSearch = new(context);
             PrincipalSearcher searcher = new(userSearch);
-
             foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>())
             {
                 if (!_accountsToHide.Contains(user.SamAccountName))

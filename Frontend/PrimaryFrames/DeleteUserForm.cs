@@ -9,12 +9,12 @@ namespace UserCreator.Frontend.PrimaryFrames
             InitializeComponent();
         }
 
-        private void DeleteUserForm_Load(object sender, EventArgs e)
+        private async void DeleteUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = DeleteButton;
-            WinUsersManagement localUserAccounts = new();
-            localUserAccounts.GetLocalWindowsUsers();
 
+            WinUsersManagement localUserAccounts = new();
+            await Task.Run(localUserAccounts.GetLocalWindowsUsers);
             foreach (string userAccount in localUserAccounts.LocalUsers)
             {
                 DeleteUserComboBox.Items.Add(userAccount);
@@ -45,14 +45,16 @@ namespace UserCreator.Frontend.PrimaryFrames
                 case DialogResult.Cancel:
                     break;
             }
+
+            DeleteUserComboBox.Text = string.Empty;
         }
 
-        private void DeleteUserComboBox_DropDown(object sender, EventArgs e)
+        private async void DeleteUserComboBox_DropDown(object sender, EventArgs e)
         {
             DeleteUserComboBox.Items.Clear();
 
             WinUsersManagement localUserAccounts = new();
-            localUserAccounts.GetLocalWindowsUsers();
+            await Task.Run(localUserAccounts.GetLocalWindowsUsers);
 
             foreach (string userAccount in localUserAccounts.LocalUsers)
             {
