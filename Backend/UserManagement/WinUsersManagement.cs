@@ -5,8 +5,6 @@ namespace UserCreator.Backend.UserManagement
 {
     internal partial class WinUsersManagement
     {
-        [GeneratedRegex("[a-z]")]
-        private static partial Regex LowercaseRegex();
         private readonly Regex _lowercase = LowercaseRegex();
 
         private string? _username;
@@ -68,6 +66,9 @@ namespace UserCreator.Backend.UserManagement
             };
             newUser.SetPassword(Password);
             newUser.Save();
+            using GroupPrincipal usersGroupPrinciple = GroupPrincipal.FindByIdentity(context, "Users");
+            usersGroupPrinciple.Members.Add(newUser);
+            usersGroupPrinciple.Save();
             if (EnableAdmin)
             {
                 using GroupPrincipal groupPrincipal = GroupPrincipal.FindByIdentity(context, "Administrators");
@@ -159,5 +160,8 @@ namespace UserCreator.Backend.UserManagement
                 }
             }
         }
+
+        [GeneratedRegex("[a-z]")]
+        private static partial Regex LowercaseRegex();
     }
 }
