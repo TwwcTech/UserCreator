@@ -79,6 +79,8 @@ namespace UserCreator.Frontend.PrimaryFrames
                 updateAccountManager.AccountExpirationLength = UpdateDateTimePicker.Value;
                 await Task.Run(updateAccountManager.UpdateAccountExpireDate);
             }
+
+            UsersCombobox.Text = string.Empty;
         }
 
         private void UpdatePassCheckbox_CheckedChanged(object sender, EventArgs e)
