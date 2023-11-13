@@ -9,13 +9,13 @@ namespace UserCreator.Frontend.PrimaryFrames
             InitializeComponent();
         }
 
-        private async void DeleteUserForm_Load(object sender, EventArgs e)
+        private void DeleteUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = DeleteButton;
 
             WinUsersManagement localUserAccounts = new();
-            await Task.Run(localUserAccounts.GetLocalWindowsUsers);
-            foreach (string userAccount in localUserAccounts.LocalUsers)
+            localUserAccounts.GetLocalWindowsUsers();
+            foreach (string userAccount in localUserAccounts.LocalUsers!)
             {
                 DeleteUserComboBox.Items.Add(userAccount);
             }
@@ -34,11 +34,18 @@ namespace UserCreator.Frontend.PrimaryFrames
                 Username = DeleteUserComboBox.Text.Trim()
             };
 
-            DialogResult messageBoxResult = MessageBox.Show($"Are you sure you want to delete this account? : {DeleteUserComboBox.Text.Trim()}", "Delete Account Prompt", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
+            DialogResult messageBoxResult = MessageBox.Show($"Deleting a user takes time to delete, the application may look frozen.\n\nAre you sure you want to delete this account? : {DeleteUserComboBox.Text.Trim()}", "Delete Account Prompt", MessageBoxButtons.YesNoCancel, MessageBoxIcon.Question);
             switch (messageBoxResult)
             {
                 case DialogResult.Yes:
                     await Task.Run(deleteUserManagement.DeleteUser);
+                    MessageBox.Show("User Deleted!\nIt will take a few moments for the drop down to reflect the changes", "User Deletion", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    WinUsersManagement refreshUserAccounts = new();
+                    refreshUserAccounts.GetLocalWindowsUsers();
+                    foreach (string userAccount in refreshUserAccounts.LocalUsers!)
+                    {
+                        DeleteUserComboBox.Items.Add(userAccount);
+                    }
                     break;
                 case DialogResult.No:
                     break;
@@ -56,7 +63,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             WinUsersManagement localUserAccounts = new();
             await Task.Run(localUserAccounts.GetLocalWindowsUsers);
 
-            foreach (string userAccount in localUserAccounts.LocalUsers)
+            foreach (string userAccount in localUserAccounts.LocalUsers!)
             {
                 DeleteUserComboBox.Items.Add(userAccount);
             }
