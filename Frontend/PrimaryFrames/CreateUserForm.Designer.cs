@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(CreateUserForm));
             NewUsernameTextbox = new TextBox();
             NewPasswordTextbox = new TextBox();
             AdminCheckbox = new CheckBox();
@@ -135,6 +136,7 @@
             Controls.Add(NewPasswordTextbox);
             Controls.Add(NewUsernameTextbox);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "CreateUserForm";
