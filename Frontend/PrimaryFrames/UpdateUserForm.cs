@@ -16,7 +16,7 @@ namespace UserCreator.Frontend.PrimaryFrames
 
             WinUsersManagement localUserAccounts = new();
             await Task.Run(localUserAccounts.GetLocalWindowsUsers);
-            foreach (string userAccount in localUserAccounts.LocalUsers)
+            foreach (string userAccount in localUserAccounts.LocalUsers!)
             {
                 UsersCombobox.Items.Add(userAccount);
             }
@@ -63,6 +63,7 @@ namespace UserCreator.Frontend.PrimaryFrames
                 else
                 {
                     MessageBox.Show("Update Password Entry must not be empty", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    return;
                 }
             }
 
@@ -79,6 +80,8 @@ namespace UserCreator.Frontend.PrimaryFrames
                 updateAccountManager.AccountExpirationLength = UpdateDateTimePicker.Value;
                 await Task.Run(updateAccountManager.UpdateAccountExpireDate);
             }
+
+            MessageBox.Show("User Updated!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
 
             UsersCombobox.Text = string.Empty;
         }
@@ -113,7 +116,7 @@ namespace UserCreator.Frontend.PrimaryFrames
 
             WinUsersManagement localUserAccounts = new();
             await Task.Run(localUserAccounts.GetLocalWindowsUsers);
-            foreach (string userAccount in localUserAccounts.LocalUsers)
+            foreach (string userAccount in localUserAccounts.LocalUsers!)
             {
                 UsersCombobox.Items.Add(userAccount);
             }
