@@ -7,52 +7,24 @@ namespace UserCreator.Backend.UserManagement
     {
         private readonly Regex _lowercase = LowercaseRegex();
 
-        private string? _username;
-        private string? _password;
-        private bool _enableAdmin = false;
         private string? _description;
-        private DateTime _accountExpirationDate;
-        private List<string>? _localUsers = new();
         private List<string> _accountsToHide = new() { "DefaultAccount", "Guest", "Administrator", "WDAGUtilityAccount" };
 
-        public string Username
-        {
-            get => _username!;
-            set
-            {
-                _username = _lowercase.IsMatch(value[0].ToString()) ? value.Replace(value[0].ToString(), value[0].ToString().ToUpper()) : value.Trim();
-            }
-        }
+        public string? Username { get; set; }
 
-        public string Password
-        {
-            get => _password!;
-            set => _password = value;
-        }
+        public string? Password { get; set; }
 
-        public bool EnableAdmin
-        {
-            get => _enableAdmin;
-            set => _enableAdmin = value;
-        }
+        public bool EnableAdmin { get; set; } = false;
 
         public string Description
         {
             get => _description!;
-            set => _description = value;
+            set => _description = value.EndsWith(".") ? value : value += ".";
         }
 
-        public DateTime AccountExpirationLength
-        {
-            get => _accountExpirationDate;
-            set => _accountExpirationDate = value;
-        }
+        public DateTime AccountExpirationLength { get; set; }
 
-        public List<string> LocalUsers
-        {
-            get => _localUsers!;
-            private set => _localUsers = value;
-        }
+        public List<string>? LocalUsers { get; set; }
 
         public async Task CreateUser()
         {
@@ -132,14 +104,17 @@ namespace UserCreator.Backend.UserManagement
 
         public void GetLocalWindowsUsers()
         {
-            using PrincipalContext context = new(ContextType.Machine);
-            UserPrincipal userSearch = new(context);
-            PrincipalSearcher searcher = new(userSearch);
-            foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>())
+            LocalUsers = new List<string>();
+            using (PrincipalContext context = new(ContextType.Machine))
             {
-                if (!_accountsToHide.Contains(user.SamAccountName))
+                UserPrincipal userSearch = new(context);
+                PrincipalSearcher searcher = new(userSearch);
+                foreach (UserPrincipal user in searcher.FindAll().Cast<UserPrincipal>())
                 {
-                    LocalUsers.Add(user.SamAccountName);
+                    if (!_accountsToHide.Contains(user.SamAccountName))
+                    {
+                        LocalUsers?.Add(user.SamAccountName);
+                    }
                 }
             }
         }
