@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(UpdateUserForm));
             UpdateButton = new Button();
             UsersCombobox = new ComboBox();
             UpdatePassCheckbox = new CheckBox();
@@ -153,6 +154,7 @@
             Controls.Add(UsersCombobox);
             Controls.Add(UpdateButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UpdateUserForm";
