@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(DeleteUserForm));
             DeleteButton = new Button();
             DeleteUserComboBox = new ComboBox();
             SuspendLayout();
@@ -61,6 +62,7 @@
             Controls.Add(DeleteUserComboBox);
             Controls.Add(DeleteButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "DeleteUserForm";
