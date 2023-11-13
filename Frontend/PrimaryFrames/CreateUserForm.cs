@@ -25,6 +25,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             if (!areTextboxesEmpty)
             {
                 MessageBox.Show("Entries must not be empty", "Entry Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
             }
             else
             {
@@ -39,6 +40,12 @@ namespace UserCreator.Frontend.PrimaryFrames
                         AccountExpirationLength = AccountExpirationCheckbox.Checked ? DayMonthPicker.Value : default
                     };
                     await Task.Run(newLocalUser.CreateUser);
+
+                    MessageBox.Show("User Created!", "", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    NewUsernameTextbox.Text = string.Empty;
+                    NewPasswordTextbox.Text = string.Empty;
+                    DescriptionTextbox.Text = string.Empty;
                 }
                 else
                 {
