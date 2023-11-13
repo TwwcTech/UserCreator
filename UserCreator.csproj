@@ -2,12 +2,20 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net7.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows10.0.22621.0</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWindowsForms>true</UseWindowsForms>
     <ImplicitUsings>enable</ImplicitUsings>
     <ApplicationManifest>app.manifest</ApplicationManifest>
+    <StartupObject>UserCreator.Program</StartupObject>
+    <ApplicationIcon>UserCreator.ico</ApplicationIcon>
+    <Title>User Creator</Title>
+    <Authors>twwc.tech</Authors>
   </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="UserCreator.ico" />
+  </ItemGroup>
 
   <ItemGroup>
     <Folder Include="AppResources\ImageFiles\" />
