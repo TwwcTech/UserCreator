@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             CreateUserButton = new Button();
             UpdateUserButton = new Button();
             DeleteUserButton = new Button();
@@ -89,6 +90,7 @@
             ClientSize = new Size(825, 450);
             Controls.Add(ConsoleButtonsPanel);
             FormBorderStyle = FormBorderStyle.Fixed3D;
+            Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "MainForm";
             SizeGripStyle = SizeGripStyle.Hide;
