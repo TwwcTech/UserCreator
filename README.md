@@ -1,5 +1,6 @@
 # UserCreator
 This user-friendly tool streamlines local user management, providing a straightforward solution for creating, updating, and deleting users. Download now for efficient user administration on your system.
+
 **Must have admin rights to run**
 
 # Main Window
