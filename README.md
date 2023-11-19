@@ -1,5 +1,6 @@
 # UserCreator
-This user-friendly tool streamlines local user management, providing a straightforward solution for creating, updating, and deleting users. Download now for efficient user administration on your system. * Must have admin rights to run *
+This user-friendly tool streamlines local user management, providing a straightforward solution for creating, updating, and deleting users. Download now for efficient user administration on your system.
+**Must have admin rights to run**
 
 # Main Window
 ![mainWindow](https://github.com/TwwcTech/UserCreator/assets/71518263/78b5f105-0e51-480d-a650-d2278f1f12ac)
