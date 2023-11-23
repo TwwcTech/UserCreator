@@ -20,7 +20,7 @@ Using UserCreator is straightforward. Simply download the application and run it
 
 We hope you find UserCreator to be a valuable tool in your local user administration toolkit. Please feel free to contribute to the UserCreator project on GitHub and share any issues or suggestions you may have. Happy user management! 💻
 
-# UserCreator - Preview
+# Screenshots
 
 <img width="586" alt="MainWindow" src="https://github.com/TwwcTech/UserCreator/assets/71518263/022b8673-7a59-4e34-a835-5d82a9ab98c8"> 
 
