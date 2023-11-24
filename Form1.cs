@@ -11,7 +11,8 @@ namespace UserCreator
 
         private void MainForm_Load(object sender, EventArgs e)
         {
-            ActiveControl = ConsoleButtonsPanel;
+            ActiveControl = CreateUserButton;
+            AcceptButton = CreateUserButton;
         }
 
         private void CreateUserButton_Click(object sender, EventArgs e)

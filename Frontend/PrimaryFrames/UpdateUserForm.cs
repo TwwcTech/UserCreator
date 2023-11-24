@@ -13,6 +13,7 @@ namespace UserCreator.Frontend.PrimaryFrames
         private async void UpdateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = UpdateButton;
+            AcceptButton = UpdateButton;
 
             WinUsersManagement localUserAccounts = new();
             await Task.Run(localUserAccounts.GetLocalWindowsUsers);

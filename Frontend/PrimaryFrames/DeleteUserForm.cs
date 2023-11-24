@@ -12,6 +12,7 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void DeleteUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = DeleteButton;
+            AcceptButton = DeleteButton;
 
             WinUsersManagement localUserAccounts = new();
             localUserAccounts.GetLocalWindowsUsers();

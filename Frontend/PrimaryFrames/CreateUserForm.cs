@@ -13,6 +13,7 @@ namespace UserCreator.Frontend.PrimaryFrames
         private void CreateUserForm_Load(object sender, EventArgs e)
         {
             ActiveControl = CreateButton;
+            AcceptButton = CreateButton;
 
             DayMonthPicker.Value = DateTime.Today.AddDays(1);
             DayMonthPicker.Enabled = false;
