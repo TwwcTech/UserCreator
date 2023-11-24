@@ -42,7 +42,7 @@
             CreateUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             CreateUserButton.Location = new Point(0, 0);
             CreateUserButton.Name = "CreateUserButton";
-            CreateUserButton.Size = new Size(275, 450);
+            CreateUserButton.Size = new Size(275, 267);
             CreateUserButton.TabIndex = 0;
             CreateUserButton.Text = "Create User";
             CreateUserButton.UseVisualStyleBackColor = true;
@@ -54,7 +54,7 @@
             UpdateUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             UpdateUserButton.Location = new Point(275, 0);
             UpdateUserButton.Name = "UpdateUserButton";
-            UpdateUserButton.Size = new Size(275, 450);
+            UpdateUserButton.Size = new Size(275, 267);
             UpdateUserButton.TabIndex = 1;
             UpdateUserButton.Text = "Update User";
             UpdateUserButton.UseVisualStyleBackColor = true;
@@ -66,7 +66,7 @@
             DeleteUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
             DeleteUserButton.Location = new Point(550, 0);
             DeleteUserButton.Name = "DeleteUserButton";
-            DeleteUserButton.Size = new Size(275, 450);
+            DeleteUserButton.Size = new Size(275, 267);
             DeleteUserButton.TabIndex = 2;
             DeleteUserButton.Text = "Delete User";
             DeleteUserButton.UseVisualStyleBackColor = true;
@@ -80,19 +80,20 @@
             ConsoleButtonsPanel.Dock = DockStyle.Fill;
             ConsoleButtonsPanel.Location = new Point(0, 0);
             ConsoleButtonsPanel.Name = "ConsoleButtonsPanel";
-            ConsoleButtonsPanel.Size = new Size(825, 450);
+            ConsoleButtonsPanel.Size = new Size(825, 267);
             ConsoleButtonsPanel.TabIndex = 3;
             // 
             // MainForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(825, 450);
+            ClientSize = new Size(825, 267);
             Controls.Add(ConsoleButtonsPanel);
             FormBorderStyle = FormBorderStyle.Fixed3D;
             Icon = (Icon)resources.GetObject("$this.Icon");
             MaximizeBox = false;
             Name = "MainForm";
+            ShowIcon = false;
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Local User Console";
