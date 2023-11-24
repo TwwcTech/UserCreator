@@ -13,6 +13,12 @@ namespace UserCreator
         {
             ActiveControl = CreateUserButton;
             AcceptButton = CreateUserButton;
+
+            localUserConsoleTooltip.InitialDelay = 0;
+            localUserConsoleTooltip.IsBalloon = true;
+            localUserConsoleTooltip.SetToolTip(CreateUserButton, "Create a new user");
+            localUserConsoleTooltip.SetToolTip(UpdateUserButton, "Update an existing user");
+            localUserConsoleTooltip.SetToolTip(DeleteUserButton, "Delete a user");
         }
 
         private void CreateUserButton_Click(object sender, EventArgs e)
