@@ -32,7 +32,7 @@ namespace UserCreator.Frontend.PrimaryFrames
             {
                 if (InputValidator.IsPasswordSecure(NewPasswordTextbox.Text.Trim()))
                 {
-                    WinUsersManagement newLocalUser = new()
+                     WinUsersManagement newLocalUser = new()
                     {
                         Username = NewUsernameTextbox.Text.Trim(),
                         Password = NewPasswordTextbox.Text.Trim(),
