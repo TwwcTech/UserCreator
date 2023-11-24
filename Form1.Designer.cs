@@ -28,11 +28,13 @@
         /// </summary>
         private void InitializeComponent()
         {
+            components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(MainForm));
             CreateUserButton = new Button();
             UpdateUserButton = new Button();
             DeleteUserButton = new Button();
             ConsoleButtonsPanel = new Panel();
+            localUserConsoleTooltip = new ToolTip(components);
             ConsoleButtonsPanel.SuspendLayout();
             SuspendLayout();
             // 
@@ -40,11 +42,12 @@
             // 
             CreateUserButton.Dock = DockStyle.Left;
             CreateUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            CreateUserButton.Image = Resource1.add_user;
             CreateUserButton.Location = new Point(0, 0);
             CreateUserButton.Name = "CreateUserButton";
             CreateUserButton.Size = new Size(275, 267);
             CreateUserButton.TabIndex = 0;
-            CreateUserButton.Text = "Create User";
+            CreateUserButton.TextAlign = ContentAlignment.BottomCenter;
             CreateUserButton.UseVisualStyleBackColor = true;
             CreateUserButton.Click += CreateUserButton_Click;
             // 
@@ -52,11 +55,12 @@
             // 
             UpdateUserButton.Dock = DockStyle.Left;
             UpdateUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            UpdateUserButton.Image = Resource1.edit;
             UpdateUserButton.Location = new Point(275, 0);
             UpdateUserButton.Name = "UpdateUserButton";
             UpdateUserButton.Size = new Size(275, 267);
             UpdateUserButton.TabIndex = 1;
-            UpdateUserButton.Text = "Update User";
+            UpdateUserButton.TextAlign = ContentAlignment.BottomCenter;
             UpdateUserButton.UseVisualStyleBackColor = true;
             UpdateUserButton.Click += UpdateUserButton_Click;
             // 
@@ -64,11 +68,12 @@
             // 
             DeleteUserButton.Dock = DockStyle.Right;
             DeleteUserButton.Font = new Font("Century Gothic", 20.25F, FontStyle.Bold, GraphicsUnit.Point);
+            DeleteUserButton.Image = Resource1.remove_user;
             DeleteUserButton.Location = new Point(550, 0);
             DeleteUserButton.Name = "DeleteUserButton";
             DeleteUserButton.Size = new Size(275, 267);
             DeleteUserButton.TabIndex = 2;
-            DeleteUserButton.Text = "Delete User";
+            DeleteUserButton.TextAlign = ContentAlignment.BottomCenter;
             DeleteUserButton.UseVisualStyleBackColor = true;
             DeleteUserButton.Click += DeleteUserButton_Click;
             // 
@@ -108,5 +113,6 @@
         private Button UpdateUserButton;
         private Button DeleteUserButton;
         private Panel ConsoleButtonsPanel;
+        private ToolTip localUserConsoleTooltip;
     }
 }
