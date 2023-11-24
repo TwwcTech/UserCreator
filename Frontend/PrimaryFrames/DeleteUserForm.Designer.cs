@@ -36,7 +36,7 @@
             // DeleteButton
             // 
             DeleteButton.Font = new Font("Century Gothic", 12F, FontStyle.Bold, GraphicsUnit.Point);
-            DeleteButton.Location = new Point(214, 348);
+            DeleteButton.Location = new Point(216, 235);
             DeleteButton.Name = "DeleteButton";
             DeleteButton.Size = new Size(196, 43);
             DeleteButton.TabIndex = 0;
@@ -48,7 +48,7 @@
             // 
             DeleteUserComboBox.Font = new Font("Century Gothic", 12F, FontStyle.Regular, GraphicsUnit.Point);
             DeleteUserComboBox.FormattingEnabled = true;
-            DeleteUserComboBox.Location = new Point(71, 78);
+            DeleteUserComboBox.Location = new Point(74, 37);
             DeleteUserComboBox.Name = "DeleteUserComboBox";
             DeleteUserComboBox.Size = new Size(503, 29);
             DeleteUserComboBox.TabIndex = 1;
@@ -58,7 +58,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(634, 450);
+            ClientSize = new Size(634, 304);
             Controls.Add(DeleteUserComboBox);
             Controls.Add(DeleteButton);
             FormBorderStyle = FormBorderStyle.Fixed3D;
@@ -66,6 +66,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "DeleteUserForm";
+            ShowIcon = false;
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Delete Local User";

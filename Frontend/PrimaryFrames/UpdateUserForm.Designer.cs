@@ -149,7 +149,7 @@
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(800, 648);
+            ClientSize = new Size(800, 649);
             Controls.Add(groupBox1);
             Controls.Add(UsersCombobox);
             Controls.Add(UpdateButton);
@@ -158,6 +158,7 @@
             MaximizeBox = false;
             MinimizeBox = false;
             Name = "UpdateUserForm";
+            ShowIcon = false;
             SizeGripStyle = SizeGripStyle.Hide;
             StartPosition = FormStartPosition.CenterScreen;
             Text = "Update Local User";
