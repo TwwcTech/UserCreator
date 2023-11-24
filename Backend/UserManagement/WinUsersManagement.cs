@@ -16,11 +16,7 @@ namespace UserCreator.Backend.UserManagement
 
         public bool EnableAdmin { get; set; } = false;
 
-        public string Description
-        {
-            get => _description!;
-            set => _description = value.EndsWith(".") ? value : value += ".";
-        }
+        public string? Description { get; set; }
 
         public DateTime AccountExpirationLength { get; set; }
 
